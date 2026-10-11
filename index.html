@@ -195,7 +195,7 @@
             document.getElementById('opt-B').innerText = "B) " + q.b;
             document.getElementById('opt-C').innerText = "C) " + q.c;
         }
-       function revealAnswer(chosenOption) {
+      function revealAnswer(chosenOption) {
             if (isAnswerRevealed || questions.length === 0) return;
             isAnswerRevealed = true;
             let q = questions[currentQIndex];
@@ -205,22 +205,25 @@
             if (chosenOption === q.correct) {
                 playSound('audio-spravne');
                 hs.style.color = '#2ecc71';
-                hs.innerText = "Žáci: SPRÁVNĚ (Lovec jde také)";
+                hs.innerText = "Žáci: SPRÁVNĚ (Lovec jde dopředu)";
+                
+                // OPRAVENO: Lovec se posune dopředu POUZE při správné odpovědi
+                setTimeout(() => {
+                    for (let p = 1; p <= 4; p++) movePawn(p, 'hunter', 1);
+                }, 1200);
             } else {
                 playSound('audio-chyba');
                 hs.style.color = '#e74c3c';
-                hs.innerText = "Žáci: CHYBNĚ (Lovec jde stále)";
+                hs.innerText = "Žáci: CHYBNĚ (Lovec zůstává stát)";
+                // Zde chybí kód pro pohyb Lovce, takže Lovec při chybě stojí!
             }
-            setTimeout(() => {
-                for (let p = 1; p <= 4; p++) movePawn(p, 'hunter', 1);
-            }, 1200);
 
             questions.splice(currentQIndex, 1);
             if (currentQIndex >= questions.length && questions.length > 0) {
                 currentQIndex = questions.length - 1;
             }
         }
-
+        
         function nextQuestion() { loadQuestion(); }
         
         function prevQuestion() {
