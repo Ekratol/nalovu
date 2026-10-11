@@ -137,7 +137,7 @@
             }
             renderPawns();
         }
-        function renderPawns() {
+       function renderPawns() {
             document.querySelectorAll('.pawn').forEach(el => el.remove());
             for (let p = 1; p <= 4; p++) {
                 let state = gameState[p];
@@ -222,6 +222,7 @@
                 return;
             }
             isAnswerRevealed = false;
+            
             hunterDecisionForCurrentQ = Math.random() < 0.85; 
             
             document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('correct-ans'));
@@ -243,9 +244,14 @@
             document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('correct-ans'));
             document.getElementById(`opt-${q.correct}`).classList.add('correct-ans');
             
-            if (chosenOption === q.correct) playSound(soundSpravne);
-            else playSound(soundChyba);
+            // Oprava vyhodnocení žáků: Zvuk se řídí podle toho, zda jste klikl na správné písmeno
+            if (chosenOption === q.correct) {
+                playSound(soundSpravne);
+            } else {
+                playSound(soundChyba);
+            }
 
+            // Oprava vyhodnocení Lovce: Pohne se pouze v případě, že u otázky uspěl
             const hStatus = document.getElementById('hunter-status');
             if (hunterDecisionForCurrentQ) {
                 hStatus.style.color = '#2ecc71';
@@ -276,4 +282,3 @@
     </script>
 </body>
 </html>
-
