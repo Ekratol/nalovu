@@ -1,0 +1,25 @@
+Která zemská sféra zahrnuje veškerou vodu na Zemi?;Biosféra;Hydrosféra;Atmosféra;B
+Jak se nazývá plynný obal Země?;Atmosféra;Litosféra;Pedosféra;A
+Která sféra představuje pevný kamenný obal Země?;Litosféra;Biosféra;Hydrosféra;A
+Co je to pedosféra?;Pevný zemský povrch;Půdní obal Země;Všechno živé na Zemi;B
+Která zemská sféra zahrnuje všechny živé organismy?;Hydrosféra;Litosféra;Biosféra;C
+Který plyn je v dnešní atmosféře zastoupen nejvíce?;Kyslík;Dusík;Oxid uhličitý;B
+Který plyn je zcela klíčový pro dýchání většiny živých organismů?;Kyslík;Vodík;Dusík;A
+Jaká vrstva atmosféry nás chrání před nebezpečným ultrafialovým zářením?;Ozonová vrstva;Troposféra;Ionosféra;A
+Kde vznikl první život na Zemi?;Na souši v půdě;V hlubokých jeskyních;V praoceánech;C
+Jak se nazývá proces, při kterém rostliny produkují kyslík za pomoci slunce?;Dýchání;Fotosyntéza;Rozklad;B
+Která sféra dodává rostlinám živiny a ukotvuje jejich kořeny?;Pedosféra;Atmosféra;Hydrosféra;A
+Kolik procent zemského povrchu přibližně pokrývá voda?;Asi 30 procent;Asi 50 procent;Asi 71 procent;C
+Co bylo hlavní podmínkou pro vznik života na Zemi?;Přítomnost tekuté vody;Suché a horké klima;Nedostatek plynů;A
+Jak se nazývají nejjednodušší jednobuněčné organismy bez jádra, které stály u zrodu života?;Bakterie a sinice;Prvoci;Ryby;A
+Která zemská sféra je nejhlubší a tvoří vnitřek naší planety?;Zemské jádro a plášť;Atmosféra;Pedosféra;A
+Co tvoří převážnou část hydrosféry na Zemi?;Sladká voda v řekách;Slaná voda v oceánech;Ledovce;B
+Který plyn v praatmosféře chyběl a objevil se až díky prvním organismům?;Oxid uhličitý;Dusík;Kyslík;C
+Jak se nazývá svrchní úrodná část zemské kůry?;Půda;Magma;Pískovec;A
+Která sféra přímo propojuje a ovlivňuje všechny ostatní sféry, protože obsahuje život?;Litosféra;Biosféra;Hydrosféra;B
+Co pohání koloběh vody v hydrosféře?;Sluneční energie a gravitace;Vnitřní teplo Země;Vítr v atmosféře;A
+Která vrstva atmosféry je nejblíže k zemskému povrchu a vzniká v ní počasí?;Stratosféra;Troposféra;Termosféra;B
+Co je hlavním zdrojem tepla a světla pro život na Zemi?;Měsíc;Slunce;Zemské jádro;B
+Jak se nazývá věda, která zkoumá neživou přírodu a složení zemské kůry?;Biologie;Ekologie;Geologie;C
+Bez které zemské sféry by nemohl existovat vzduch, který dýcháme?;Atmosféra;Hydrosféra;Pedosféra;A
+Které organismy jako první začaly obohacovat atmosféru o kyslík?;První suchozemské rostliny;Sinice v praoceánech;Dinosauři;B
