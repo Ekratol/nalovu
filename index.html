@@ -2,230 +2,141 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Na lovu - Hlavní hra</title>
+    <title>Na lovu - Školní kvíz</title>
     <link rel="stylesheet" href="styl.css">
 </head>
 <body>
-
     <h1>Na lovu: Hlavní Lov</h1>
-
     <div id="setup-container" class="setup-screen">
         <h2>Zadejte jména hráčů</h2>
         <div class="input-group">
-            <label for="p1-name">Hráč 1:</label><input type="text" id="p1-name" value="Žák 1">
-            <label for="p2-name">Hráč 2:</label><input type="text" id="p2-name" value="Žák 2">
-            <label for="p3-name">Hráč 3:</label><input type="text" id="p3-name" value="Žák 3">
-            <label for="p4-name">Hráč 4:</label><input type="text" id="p4-name" value="Žák 4">
+            <label>Hráč 1:</label><input type="text" id="p1-name" value="Žák 1">
+            <label>Hráč 2:</label><input type="text" id="p2-name" value="Žák 2">
+            <label>Hráč 3:</label><input type="text" id="p3-name" value="Žák 3">
+            <label>Hráč 4:</label><input type="text" id="p4-name" value="Žák 4">
         </div>
         <button onclick="startGame()">Spustit hru</button>
     </div>
-
     <div class="main-layout" id="main-game-layout" style="display: none;">
         <div class="quiz-container">
             <div>
-                <div style="font-size: 0.9rem; color: #888; display: flex; justify-content: space-between;" id="quiz-meta">
-                    <span id="question-counter">Otázka 1 / X</span>
-                    <span id="hunter-status" style="font-weight: bold; color: #e74c3c;">Lovec přemýšlí...</span>
+                <div style="font-size: 0.9rem; color: #888; display: flex; justify-content: space-between;">
+                    <span id="question-counter">Zbývá otázek: 0</span>
+                    <span id="hunter-status" style="font-weight: bold; color: #ffd700;">Lovec přemýšlí...</span>
                 </div>
                 <div class="question-box" id="question-text">Načítám otázky...</div>
-                
                 <div class="options-list">
-                    <button class="option-btn" id="opt-A" onclick="revealAnswer('A')">A) </button>
-                    <button class="option-btn" id="opt-B" onclick="revealAnswer('B')">B) </button>
-                    <button class="option-btn" id="opt-C" onclick="revealAnswer('C')">C) </button>
+                    <button class="option-btn" id="opt-A" onclick="revealAnswer('A')">A)</button>
+                    <button class="option-btn" id="opt-B" onclick="revealAnswer('B')">B)</button>
+                    <button class="option-btn" id="opt-C" onclick="revealAnswer('C')">C)</button>
                 </div>
             </div>
-
             <div class="quiz-controls">
                 <button onclick="prevQuestion()" style="background:#555;">◀ Přeskočit</button>
                 <button onclick="nextQuestion()">Další otázka ▶</button>
             </div>
         </div>
-
         <div class="board-container" id="game-board"></div>
     </div>
-
     <audio id="audio-znelka" src="znelka.mp3" preload="auto"></audio>
     <audio id="audio-spravne" src="spravne.mp3" preload="auto"></audio>
     <audio id="audio-chyba" src="chyba.mp3" preload="auto"></audio>
-
     <script>
         let questions = [];
         let currentQIndex = 0;
         let isAnswerRevealed = false;
-        let hunterDecisionForCurrentQ = true; 
-        let playerNames = { 1: "Hráč 1", 2: "Hráč 2", 3: "Hráč 3", 4: "Hráč 4" };
+        let playerNames = {};
         let gameState = {
             1: { player: 3, hunter: 0, active: true },
             2: { player: 3, hunter: 0, active: true },
             3: { player: 3, hunter: 0, active: true },
             4: { player: 3, hunter: 0, active: true }
         };
-
         const soundSpravne = document.getElementById('audio-spravne');
         const soundChyba = document.getElementById('audio-chyba');
-
+        
         function playSound(audioElement) {
             if (!audioElement) return;
             audioElement.currentTime = 0;
             audioElement.play().catch(e => console.log("Audio block"));
         }
-       async function loadQuestionsFromFile() {
+        async function loadQuestionsFromFile() {
             try {
-                const timestamp = new Date().getTime();
-                const response = await fetch(`otazky.txt?t=${timestamp}`);
+                const response = await fetch(`otazky.txt?t=${new Date().getTime()}`);
                 const text = await response.text();
-                const lines = text.split('\n');
-                
-                questions = lines.map(line => {
-                    const parts = line.split(';');
-                    if (parts.length >= 5) {
-                        return {
-                            q: parts[0].trim(),
-                            a: parts[1].trim(),
-                            b: parts[2].trim(),
-                            c: parts[3].trim(),
-                            correct: parts[4].trim().toUpperCase()
-                        };
-                    }
-                    return null;
+                questions = text.split('\n').map(line => {
+                    const p = line.split(';');
+                    return p.length >= 5 ? { q: p[0].trim(), a: p[1].trim(), b: p[2].trim(), c: p[3].trim(), correct: p[4].trim().toUpperCase() } : null;
                 }).filter(q => q !== null);
-                
-                if (questions.length === 0) {
-                    document.getElementById('question-text').innerText = "Chyba: V souboru otazky.txt nejsou žádné platné otázky.";
-                }
+                if (questions.length === 0) document.getElementById('question-text').innerText = "Chyba v otazky.txt.";
             } catch (error) {
-                console.error("Nelze načíst soubor s otázkami:", error);
-                document.getElementById('question-text').innerText = "Chyba při stahování otazky.txt.";
+                document.getElementById('question-text').innerText = "Chyba načítání otazky.txt.";
             }
         }
-
         function startGame() {
-            const soundZnelka = document.getElementById('audio-znelka');
-            playSound(soundZnelka);
-
-            playerNames[1] = document.getElementById('p1-name').value || "Žák 1";
-            playerNames[2] = document.getElementById('p2-name').value || "Žák 2";
-            playerNames[3] = document.getElementById('p3-name').value || "Žák 3";
-            playerNames[4] = document.getElementById('p4-name').value || "Žák 4";
-
+            playSound(document.getElementById('audio-znelka'));
+            for(let i=1; i<=4; i++) playerNames[i] = document.getElementById(`p${i}-name`).value || `Žák ${i}`;
             document.getElementById('setup-container').style.display = 'none';
             document.getElementById('main-game-layout').style.display = 'flex';
-
             createBoard();
             loadQuestion();
         }
-
         function createBoard() {
             const board = document.getElementById('game-board');
             board.innerHTML = '';
             for (let p = 1; p <= 4; p++) {
-                let laneHtml = `<div class="lane"><div class="lane-header" id="lane-header-${p}">${playerNames[p]}</div>`;
+                let html = `<div class="lane"><div class="lane-header" id="lane-header-${p}">${playerNames[p]}</div>`;
                 for (let c = 0; c <= 7; c++) {
-                    let cellClass = "cell";
-                    let label = "";
-                    if (c === 0) { cellClass += " hunter-zone"; label = "START L"; }
-                    if (c === 7) { cellClass += " bank-zone"; label = "BANK"; }
-                    laneHtml += `<div class="${cellClass}" id="l-${p}-c-${c}">${label}</div>`;
+                    let cls = "cell" + (c===0 ? " hunter-zone" : c===7 ? " bank-zone" : "");
+                    html += `<div class="${cls}" id="l-${p}-c-${c}">${c===0?"START L":c===7?"BANK":""}</div>`;
                 }
-                laneHtml += `
-                    <div class="manual-controls" style="justify-content: center; background: none; padding: 5px 0;">
-                        <button id="btn-correct-${p}" onclick="movePawn(${p}, 'player', 1)" style="background-color: #2ecc71; color: white; border: none; padding: 8px 12px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; font-size: 0.8rem;">✓ SPRÁVNĚ</button>
-                    </div></div>`;
-                board.innerHTML += laneHtml;
+                html += `<div class="manual-controls" style="justify-content: center; background: none; padding: 5px 0;"><button id="btn-correct-${p}" onclick="movePawn(${p}, 'player', 1)" style="background-color: #2ecc71; color: white; border: none; padding: 8px 12px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; font-size: 0.8rem;">✓ SPRÁVNĚ</button></div></div>`;
+                board.innerHTML += html;
             }
             renderPawns();
         }
-       function renderPawns() {
+        function renderPawns() {
             document.querySelectorAll('.pawn').forEach(el => el.remove());
             for (let p = 1; p <= 4; p++) {
-                let state = gameState[p];
-                if (state.active && state.hunter < 7) {
-                    let hCell = document.getElementById(`l-${p}-c-${state.hunter}`);
-                    if (hCell) hCell.innerHTML += `<div class="pawn hunter">L</div>`;
-                }
-                if (state.active && state.player < 7) {
-                    let pCell = document.getElementById(`l-${p}-c-${state.player}`);
-                    if (pCell) pCell.innerHTML += `<div class="pawn player">${p}</div>`;
-                }
-                
-                let header = document.getElementById(`lane-header-${p}`);
-                let btnCorrect = document.getElementById(`btn-correct-${p}`);
-                if (header) {
-                    if (!state.active) { 
-                        header.style.color = '#e74c3c'; header.innerText = `Chycen`; 
-                        if (btnCorrect) btnCorrect.style.display = 'none';
-                    } else if (state.player === 7) { 
-                        header.style.color = '#2ecc71'; header.innerText = `Utekl`; 
-                        if (btnCorrect) btnCorrect.style.display = 'none';
-                    } else { 
-                        header.style.color = 'var(--gold)'; header.innerText = playerNames[p]; 
-                    }
+                let s = gameState[p];
+                if (s.active && s.hunter < 7) document.getElementById(`l-${p}-c-${s.hunter}`).innerHTML += `<div class="pawn hunter">L</div>`;
+                if (s.active && s.player < 7) document.getElementById(`l-${p}-c-${s.player}`).innerHTML += `<div class="pawn player">${p}</div>`;
+                let h = document.getElementById(`lane-header-${p}`);
+                let b = document.getElementById(`btn-correct-${p}`);
+                if (h) {
+                    if (!s.active) { h.style.color = '#e74c3c'; h.innerText = `Chycen`; if(b) b.style.display='none'; }
+                    else if (s.player === 7) { h.style.color = '#2ecc71'; h.innerText = `Utekl`; if(b) b.style.display='none'; }
+                    else { h.style.color = 'var(--gold)'; h.innerText = playerNames[p]; }
                 }
             }
             checkGameEnd();
         }
-
-        function movePawn(playerNum, role, direction) {
-            let state = gameState[playerNum];
-            if (!state.active || state.player === 7) return;
-
+        function movePawn(playerNum, role, dir) {
+            let s = gameState[playerNum];
+            if (!s.active || s.player === 7) return;
             if (role === 'player') {
-                state.player = Math.max(1, Math.min(7, state.player + direction));
-                if (state.player === 7) playSound(soundSpravne);
+                s.player = Math.max(1, Math.min(7, s.player + dir));
+                if (s.player === 7) playSound(soundSpravne);
             } else {
-                state.hunter = Math.max(0, Math.min(7, state.hunter + direction));
+                s.hunter = Math.max(0, Math.min(7, s.hunter + dir));
             }
-
-            if (state.hunter >= state.player && state.player < 7) {
-                state.active = false;
-                playSound(soundChyba);
-            }
+            if (s.hunter >= s.player && s.player < 7) { s.active = false; playSound(soundChyba); }
             renderPawns();
         }
-
         function checkGameEnd() {
-            let anyActive = false;
-            for (let p = 1; p <= 4; p++) {
-                if (gameState[p].active && gameState[p].player < 7) {
-                    anyActive = true;
-                }
-            }
-
-            if (!anyActive) {
-                let savedPlayers = [];
-                let caughtPlayers = [];
-                for (let p = 1; p <= 4; p++) {
-                    if (gameState[p].player === 7) savedPlayers.push(playerNames[p]);
-                    else caughtPlayers.push(playerNames[p]);
-                }
-
-                const quizContainer = document.querySelector('.quiz-container');
-                quizContainer.innerHTML = `
-                    <div style="text-align: center; padding: 20px;">
-                        <h2 style="color: var(--gold); text-transform: uppercase;">Konec Hry!</h2>
-                        <p style="font-size: 1.2rem; margin-top: 20px;">💰 <strong>Zachránění žáci:</strong><br> ${savedPlayers.length > 0 ? savedPlayers.join(', ') : 'Nikdo neušel'}</p>
-                        <p style="font-size: 1.2rem; margin-top: 20px; color: #e74c3c;">🏹 <strong>Chyceni Lovcem:</strong><br> ${caughtPlayers.length > 0 ? caughtPlayers.join(', ') : 'Nikdo'}</p>
-                        <button onclick="window.location.reload()" style="margin-top: 30px; background-color: var(--accent); color: white; border: none; padding: 12px 25px; font-weight: bold; border-radius: 6px; cursor: pointer;">Hrát znovu</button>
-                    </div>
-                `;
-                const soundZnelka = document.getElementById('audio-znelka');
-                playSound(soundZnelka);
+            let active = false;
+            for (let p = 1; p <= 4; p++) if (gameState[p].active && gameState[p].player < 7) active = true;
+            if (!active) {
+                let sv = [], cg = [];
+                for (let p = 1; p <= 4; p++) (gameState[p].player === 7 ? sv : cg).push(playerNames[p]);
+                document.querySelector('.quiz-container').innerHTML = `<div style="text-align: center; padding: 20px;"><h2 style="color: var(--gold);">Konec Hry!</h2><p style="font-size: 1.1rem; margin-top: 20px;">💰 <strong>Zachránění:</strong><br> ${sv.length ? sv.join(', ') : 'Nikdo'}</p><p style="font-size: 1.1rem; margin-top: 20px; color: #e74c3c;">🏹 <strong>Chyceni Lovcem:</strong><br> ${cg.length ? cg.join(', ') : 'Nikdo'}</p><button onclick="window.location.reload()" style="margin-top: 30px; background-color: var(--accent); color: white; border: none; padding: 12px 25px; font-weight: bold; border-radius: 6px; cursor: pointer;">Hrát znovu</button></div>`;
+                playSound(document.getElementById('audio-znelka'));
             }
         }
-
         function loadQuestion() {
-            if (questions.length === 0) {
-                document.getElementById('question-text').innerText = "Všechny otázky byly vyčerpány! Doplňte soubor otazky.txt.";
-                document.getElementById('question-counter').innerText = "Otázka 0 / 0";
-                return;
-            }
+            if (questions.length === 0) { document.getElementById('question-text').innerText = "Všechny otázky byly vyčerpány!"; return; }
             isAnswerRevealed = false;
-            
-            hunterDecisionForCurrentQ = Math.random() < 0.85; 
-            
-            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('correct-ans'));
+            document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('correct-ans'));
             let q = questions[currentQIndex];
             document.getElementById('question-counter').innerText = `Zbývá otázek: ${questions.length}`;
             document.getElementById('hunter-status').style.color = '#ffd700';
@@ -235,49 +146,26 @@
             document.getElementById('opt-B').innerText = `B) ${q.b}`;
             document.getElementById('opt-C').innerText = `C) ${q.c}`;
         }
-
         function revealAnswer(chosenOption) {
             if (isAnswerRevealed || questions.length === 0) return;
             isAnswerRevealed = true;
-
             let q = questions[currentQIndex];
-            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('correct-ans'));
             document.getElementById(`opt-${q.correct}`).classList.add('correct-ans');
+            playSound(chosenOption === q.correct ? soundSpravne : soundChyba);
             
-            // Oprava vyhodnocení žáků: Zvuk se řídí podle toho, zda jste klikl na správné písmeno
-            if (chosenOption === q.correct) {
-                playSound(soundSpravne);
-            } else {
-                playSound(soundChyba);
-            }
-
-            // Oprava vyhodnocení Lovce: Pohne se pouze v případě, že u otázky uspěl
-            const hStatus = document.getElementById('hunter-status');
-            if (hunterDecisionForCurrentQ) {
-                hStatus.style.color = '#2ecc71';
-                hStatus.innerText = "Odpověď Lovce: SPRÁVNĚ";
-                setTimeout(() => {
-                    for (let p = 1; p <= 4; p++) movePawn(p, 'hunter', 1);
-                }, 1000);
-            } else {
-                hStatus.style.color = '#e74c3c';
-                hStatus.innerText = "Odpověď Lovce: CHYBNĚ";
-            }
-
+            const hs = document.getElementById('hunter-status');
+            hs.style.color = '#2ecc71'; 
+            hs.innerText = "Odpověď Lovce: SPRÁVNĚ";
+            
+            setTimeout(() => { 
+                for (let p = 1; p <= 4; p++) movePawn(p, 'hunter', 1); 
+            }, 1000);
+            
             questions.splice(currentQIndex, 1);
-            if (currentQIndex >= questions.length && questions.length > 0) {
-                currentQIndex = questions.length - 1;
-            }
+            if (currentQIndex >= questions.length && questions.length > 0) currentQIndex = questions.length - 1;
         }
-
         function nextQuestion() { loadQuestion(); }
-        function prevQuestion() { 
-            if (questions.length > 0) {
-                currentQIndex = (currentQIndex + 1) % questions.length;
-                loadQuestion();
-            }
-        }
-
+        function prevQuestion() { if (questions.length > 0) { currentQIndex = (currentQIndex + 1) % questions.length; loadQuestion(); } }
         window.onload = function() { loadQuestionsFromFile(); };
     </script>
 </body>
