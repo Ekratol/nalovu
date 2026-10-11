@@ -32,7 +32,8 @@ function checkGameEnd() {
     let active = false;
     for (let p = 1; p <= 4; p++) if (gameState[p].active && gameState[p].player < 7) active = true;
     if (!active) {
-        let sv = [], cg = [];
+        let sv = new Array();
+        let cg = new Array();
         for (let p = 1; p <= 4; p++) (gameState[p].player === 7 ? sv : cg).push(playerNames[p]);
         document.querySelector('.quiz-container').innerHTML = `<div style="text-align: center; padding: 20px;"><h2 style="color: var(--gold);">Konec Hry!</h2><p style="font-size: 1.1rem; margin-top: 20px;">💰 <strong>Zachránění:</strong><br> ${sv.length ? sv.join(', ') : 'Nikdo'}</p><p style="font-size: 1.1rem; margin-top: 20px; color: #e74c3c;">🏹 <strong>Chyceni Lovcem:</strong><br> ${cg.length ? cg.join(', ') : 'Nikdo'}</p><button onclick="window.location.reload()" style="margin-top: 30px; background-color: var(--accent); color: white; border: none; padding: 12px 25px; font-weight: bold; border-radius: 6px; cursor: pointer;">Hrát znovu</button></div>`;
         playSound(document.getElementById('audio-znelka'));
