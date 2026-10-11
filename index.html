@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Na lovu - Školní kvíz</title>
+    <link rel="stylesheet" href="styl.css">
+</head>
+<body>
+    <h1>Na lovu: Hlavní Lov</h1>
+    <div id="setup-container" class="setup-screen">
+        <h2>Zadejte jména hráčů</h2>
+        <div class="input-group">
+            <label>Hráč 1:</label><input type="text" id="p1-name" value="Žák 1">
+            <label>Hráč 2:</label><input type="text" id="p2-name" value="Žák 2">
+            <label>Hráč 3:</label><input type="text" id="p3-name" value="Žák 3">
+            <label>Hráč 4:</label><input type="text" id="p4-name" value="Žák 4">
+        </div>
+        <button onclick="startGame()">Spustit hru</button>
+    </div>
+    <div class="main-layout" id="main-game-layout" style="display: none;">
+        <div class="quiz-container">
+            <div>
+                <div style="font-size: 0.9rem; color: #888; display: flex; justify-content: space-between;">
+                    <span id="question-counter">Zbývá otázek: 0</span>
+                    <span id="hunter-status" style="font-weight: bold; color: #ffd700;">Čekám na odpověď...</span>
+                </div>
+                <div class="question-box" id="question-text">Načítám otázky...</div>
+                <div class="options-list">
+                    <button class="option-btn" id="opt-A" onclick="revealAnswer('A')">A)</button>
+                    <button class="option-btn" id="opt-B" onclick="revealAnswer('B')">B)</button>
+                    <button class="option-btn" id="opt-C" onclick="revealAnswer('C')">C)</button>
+                </div>
+            </div>
+            <div class="quiz-controls">
+                <button onclick="prevQuestion()" style="background:#555;">◀ Přeskočit</button>
+                <button onclick="nextQuestion()">Další otázka ▶</button>
+            </div>
+        </div>
+        <div class="board-container" id="game-board"></div>
+    </div>
+    <audio id="audio-znelka" src="znelka.mp3" preload="auto"></audio>
+    <audio id="audio-spravne" src="spravne.mp3" preload="auto"></audio>
+    <audio id="audio-chyba" src="chyba.mp3" preload="auto"></audio>
+
+    <!-- Načtení rozdělené logiky -->
+    <script src="skript1.js"></script>
+    <script src="skript2.js"></script>
+</body>
+</html>
