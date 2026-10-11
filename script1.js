@@ -1,4 +1,4 @@
-let questions = [];
+let questions = new Array();
 let currentQIndex = 0;
 let isAnswerRevealed = false;
 let playerNames = {};
