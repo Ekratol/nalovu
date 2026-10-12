@@ -163,13 +163,13 @@ function loadQuestion() {
  }
 }
         
- // 5. VYHODNOCENÍ ODPOVĚDI
+// 5. VYHODNOCENÍ ODPOVĚDI
 function revealAnswer(chosenOption) {
     if (isAnswerRevealed || questions.length === 0) return;
     isAnswerRevealed = true;
     
-    // UVOLNĚNÍ ZÁMKU: Právě se kliklo na odpověď, takže moderátor TEĎ může posunout žáka
-    isPlayerMoveAllowed = true; 
+    // Povolíme moderátorovi pohnout žákem, protože odpověď už byla odhalena
+    isPlayerMoveAllowed = true;
     
     const q = questions[currentQIndex];
     if (!q) return;
@@ -196,9 +196,9 @@ function revealAnswer(chosenOption) {
         }
     }
 }
+
 // 6. EXTRA MANUÁLNÍ POHYB LOVCE
 function moveHunterManual() {
-    // POSUNUTÍ FIGUREK LOVCE
     for (let p = 1; p <= 4; p++) { 
         movePawn(p, 'hunter', 1); 
     }
@@ -209,7 +209,6 @@ function moveHunterManual() {
         hs.innerText = "Lovec posunut. Můžete jít na další otázku."; 
     }
     
-    // ZHASNUTÍ TLAČÍTKA: Po kliknutí tlačítko opět zmizí
     const btnHunter = document.getElementById('btn-hunter-move');
     if (btnHunter) btnHunter.style.display = 'none';
 }
@@ -224,8 +223,6 @@ function nextQuestion() {
 function prevQuestion() { 
     const btnHunter = document.getElementById('btn-hunter-move');
     if (btnHunter) btnHunter.style.display = 'none';
-    
-    // OPRAVENO: Tlačítko nyní skočí na DALŠÍ otázku v seznamu (+ 1 namísto - 1)
     if (questions.length > 0) { 
         currentQIndex = (currentQIndex + 1) % questions.length; 
         loadQuestion(); 
@@ -240,7 +237,7 @@ function createBoard() {
     
     for (let p = 1; p <= 4; p++) {
         let html = '<div class="lane"><div class="lane-header" id="lane-header-' + p + '">' + playerNames[p] + '</div>';
-        for (let c = 0; c <= 7; c++) {
+        for (let c = 7; c >= 0; c--) {
             let cls = "cell" + (c === 0 ? " hunter-zone" : c === 7 ? " bank-zone" : "");
             html += '<div class="' + cls + '" id="l-' + p + '-c-' + c + '">' + (c === 0 ? "START L" : c === 7 ? "BANK" : "") + '</div>';
         }
@@ -248,7 +245,6 @@ function createBoard() {
         board.innerHTML += html;
     }
     
-    // DYNAMICKÉ VLOŽENÍ TLAČÍTKA S JEDNOTNÝM ID
     const controlsDiv = document.querySelector('.quiz-controls');
     if (controlsDiv) {
         controlsDiv.innerHTML = `
@@ -285,16 +281,29 @@ function renderPawns() {
     checkGameEnd();
 }
 
+// AKTUALIZOVÁNO: Funkce nyní striktně kontroluje zámek a po 1 kliknutí se ihned zablokuje
 function movePawn(playerNum, role, steps) {
     let s = gameState[playerNum];
     if (!s || !s.active) return;
+    
+    // POJISTKA: Pokud se ještě neodpovědělo, nebo už se žák v tomto kole posunul, tlačítko nereaguje
+    if (role === 'player' && !isPlayerMoveAllowed) {
+        return;
+    }
+    
     if (role === 'player') { 
         s.player += steps; 
+        
+        // OPĚTOVNÉ ZAMČENÍ: Žák udělal 1 krok, možnost dalšího klikání ihned zablokujeme pro celou třídu
+        isPlayerMoveAllowed = false; 
+        
         if (s.player > 7) s.player = 7; 
+        if (s.player === 7) playSound('audio-spravne');
     } else if (role === 'hunter') { 
         s.hunter += steps; 
         if (s.hunter > 7) s.hunter = 7; 
     }
+    
     if (s.hunter >= s.player && s.player < 7) { 
         s.active = false; 
         playSound('audio-chyba'); 
@@ -308,7 +317,6 @@ function checkGameEnd() {
         if (gameState[p] && gameState[p].active && gameState[p].player < 7) active = true;
     }
     if (!active && Object.keys(playerNames).length > 0) {
-        // OPRAVENO: Bezpečný zápis polí, který systém nesmaže
         let sv = new Array();
         let cg = new Array();
         for (let p = 1; p <= 4; p++) { 
@@ -334,10 +342,31 @@ function resetGame() {
     if (document.querySelector('.quiz-controls')) document.querySelector('.quiz-controls').style.display = 'flex';
     if (document.getElementById('question-text')) document.getElementById('question-text').innerHTML = "Načítám otázky...";
     gameState = {}; playerNames = {};
+    isPlayerMoveAllowed = false;
 }
+
+// Do načtení nové otázky vložíme opětovné zamčení pohybu žáků
+function originalLoadQuestion() {
+    if (questions.length === 0) return;
+    if (currentQIndex >= questions.length) currentQIndex = 0;
+    const q = questions[currentQIndex];
+    if (q) {
+        document.getElementById('question-text').innerText = q.q;
+        document.getElementById('opt-A').innerText = "A) " + q.a;
+        document.getElementById('opt-B').innerText = "B) " + q.b;
+        document.getElementById('opt-C').innerText = "C) " + q.c;
+        isAnswerRevealed = false;
+        isPlayerMoveAllowed = false; // ZÁMEK: Nová otázka = žáci jsou opět pevně zamčeni
+        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('correct-ans'));
+        document.getElementById('question-counter').innerText = 'Otázka: ' + (currentQIndex + 1) + ' / ' + questions.length;
+        document.getElementById('hunter-status').style.color = '#ffd700';
+        document.getElementById('hunter-status').innerText = "Čekám na odpověď žáků...";
+    }
+}
+loadQuestion = originalLoadQuestion;
 
 window.onload = function() { loadQuestionsFromFile(); };
 </script>
 </body>
-</html>  
+</html>
 
