@@ -98,6 +98,7 @@
 let questions = [];
 let currentQIndex = 0;
 let isAnswerRevealed = false;
+let isPlayerMoveAllowed = false; // Na začátku otázky je posun žáků přísně zamčený
 let playerNames = {};
 let gameState = {};
 
@@ -167,6 +168,9 @@ function revealAnswer(chosenOption) {
     if (isAnswerRevealed || questions.length === 0) return;
     isAnswerRevealed = true;
     
+    // UVOLNĚNÍ ZÁMKU: Právě se kliklo na odpověď, takže moderátor TEĎ může posunout žáka
+    isPlayerMoveAllowed = true; 
+    
     const q = questions[currentQIndex];
     if (!q) return;
 
@@ -182,11 +186,8 @@ function revealAnswer(chosenOption) {
             hs.style.color = '#2ecc71'; 
             hs.innerText = "Žáci: SPRÁVNĚ (Posuňte žáky a pak stiskněte 'Posunout lovce')"; 
         }
-        
-        // ROZSVÍTÍ TLAČÍTKO: Ukáže červené tlačítko na obrazovce
         const btnHunter = document.getElementById('btn-hunter-move');
         if (btnHunter) btnHunter.style.display = 'inline-block';
-        
     } else {
         playSound('audio-chyba');
         if (hs) { 
@@ -195,7 +196,6 @@ function revealAnswer(chosenOption) {
         }
     }
 }
-
 // 6. EXTRA MANUÁLNÍ POHYB LOVCE
 function moveHunterManual() {
     // POSUNUTÍ FIGUREK LOVCE
