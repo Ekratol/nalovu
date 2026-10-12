@@ -102,6 +102,7 @@ let isPlayerMoveAllowed = false; // Na začátku otázky je posun žáků přís
 let playerNames = {};
 let gameState = {};
 let movedPlayersInCurrentRound = new Array();
+let movedPlayersInCurrentRound = new Array();
 
 function playSound(id) {
     const el = document.getElementById(id);
@@ -164,6 +165,9 @@ function loadQuestion() {
  }
 }
         
+// Globální pole, které si pamatuje, kteří žáci už se v tomto kole posunuli
+let movedPlayersInCurrentRound = new Array();
+
 // 5. VYHODNOCENÍ ODPOVĚDI
 function revealAnswer(chosenOption) {
     if (isAnswerRevealed || questions.length === 0) return;
