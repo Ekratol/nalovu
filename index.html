@@ -94,23 +94,19 @@
     <audio id="audio-chyba" src="chyba.mp3" preload="auto"></audio>
     
  <script>
-// 1. INICIALIZACE PROMĚNNÝCH
+// 1. GLOBÁLNÍ PROMĚNNÉ A ZVUK
 let questions = [];
 let currentQIndex = 0;
 let isAnswerRevealed = false;
 let playerNames = {};
 let gameState = {};
 
-// Pomocná funkce pro bezpečné přehrávání zvuku
 function playSound(id) {
     const el = document.getElementById(id);
-    if (el) { 
-        el.currentTime = 0; 
-        el.play().catch(e => console.log("Audio block:", e)); 
-    }
+    if (el) { el.currentTime = 0; el.play().catch(e => console.log("Audio:", e)); }
 }
 
-// 2. NAČÍTÁNÍ OTÁZEK ZE SOUBORU
+// 2. NAČÍTÁNÍ OTÁZEK
 async function loadQuestionsFromFile() {
     try {
         const res = await fetch("otazky.txt?t=" + new Date().getTime());
@@ -122,98 +118,89 @@ async function loadQuestionsFromFile() {
             if (!line.trim()) return null;
             const p = line.split(";");
             if (p.length < 5) return null;
-            
             return {
-                q: p.shift().trim(),
-                a: p.shift().trim(),
-                b: p.shift().trim(),
-                c: p.shift().trim(),
-                correct: p.shift().trim().toUpperCase()
+                q: p.shift().trim(), a: p.shift().trim(), b: p.shift().trim(),
+                c: p.shift().trim(), correct: p.shift().trim().toUpperCase()
             };
         }).filter(q => q !== null);
-
-        if (questions.length === 0) {
-            const qText = document.getElementById('question-text');
-            if (qText) qText.innerText = "Chyba: Soubor otazky.txt je prázdný.";
-        }
     } catch (error) {
-        const qText = document.getElementById('question-text');
-        if (qText) qText.innerText = "Chyba při stahování otazky.txt.";
+        console.log("Chyba načítání");
     }
 }
 
-// 3. SPUŠTĚNÍ HRY (ZADÁNÍ HRÁČŮ)
+// 3. SPUŠTĚNÍ HRY
 function startGame() {
     playSound('audio-znelka');
-    
     for (let i = 1; i <= 4; i++) {
         const nameEl = document.getElementById("p" + i + "-name");
         const startEl = document.getElementById("p" + i + "-start");
-        
         playerNames[i] = nameEl ? (nameEl.value || "Žák " + i) : "Žák " + i;
         const startPole = startEl ? (parseInt(startEl.value) || 3) : 3;
-        
         gameState[i] = { player: startPole, hunter: 0, active: true };
     }
-    
-    const setupCont = document.getElementById('setup-container');
-    const mainLayout = document.getElementById('main-game-layout');
-    
-    if (setupCont) setupCont.style.display = 'none';
-    if (mainLayout) mainLayout.style.display = 'flex';
-    
+    if (document.getElementById('setup-container')) document.getElementById('setup-container').style.display = 'none';
+    if (document.getElementById('main-game-layout')) document.getElementById('main-game-layout').style.display = 'flex';
     createBoard();
-      if (typeof createBoard === "function") createBoard();
-    
-    // OPRAVA: Pokud už jsme v předchozí hře nějaké otázky odehráli, 
-    // posuneme index před načtením na další otázku, aby tam nezůstávala ta stará.
-    if (currentQIndex > 0) {
-        currentQIndex++;
-    }
-    
-    if (typeof loadQuestion === "function") loadQuestion();
-}
+    if (currentQIndex > 0) currentQIndex++;
     loadQuestion();
 }
-// 4. ZOBRAZENÍ AKTUÁLNÍ OTÁZKY
+     // 4. ZOBRAZENÍ OTÁZKY
 function loadQuestion() {
-    if (questions.length === 0) {
-        document.getElementById('question-text').innerText = "Všechny otázky byly vyčerpány!";
-        return;
-    }
-
-    // Ochrana přetečení indexu – otáčí otázky stále dokola
-    if (currentQIndex >= questions.length) {
-        currentQIndex = 0; 
-    }
-
-    const currentQuestion = questions[currentQIndex];
-    
-    if (currentQuestion) {
-        const qText = document.getElementById('question-text');
-        const optA = document.getElementById('opt-A');
-        const optB = document.getElementById('opt-B');
-        const optC = document.getElementById('opt-C');
-        
-        if (qText) qText.innerText = currentQuestion.q;
-        if (optA) optA.innerText = "A) " + currentQuestion.a;
-        if (optB) optB.innerText = "B) " + currentQuestion.b;
-        if (optC) optC.innerText = "C) " + currentQuestion.c;
-        
+    if (questions.length === 0) return;
+    if (currentQIndex >= questions.length) currentQIndex = 0;
+    const q = questions[currentQIndex];
+    if (q) {
+        document.getElementById('question-text').innerText = q.q;
+        document.getElementById('opt-A').innerText = "A) " + q.a;
+        document.getElementById('opt-B').innerText = "B) " + q.b;
+        document.getElementById('opt-C').innerText = "C) " + q.c;
         isAnswerRevealed = false;
         document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('correct-ans'));
-        
-        const qCounter = document.getElementById('question-counter');
-        if (qCounter) qCounter.innerText = 'Otázka číslo: ' + (currentQIndex + 1) + ' / ' + questions.length;
+        document.getElementById('question-counter').innerText = 'Otázka: ' + (currentQIndex + 1) + ' / ' + questions.length;
+        document.getElementById('hunter-status').style.color = '#ffd700';
+        document.getElementById('hunter-status').innerText = "Čekám na odpověď žáků...";
     }
 }
 
-// 5. GENEROVÁNÍ HERNÍ DESKY (DRÁHY PRO 4 ŽÁKY)
+// 5. VYHODNOCENÍ ODPOVĚDI (Lovec automaticky nestojí ani nechodí)
+function revealAnswer(chosenOption) {
+    if (isAnswerRevealed || questions.length === 0) return;
+    isAnswerRevealed = true;
+    let q = questions[currentQIndex];
+    if (document.getElementById("opt-" + q.correct)) document.getElementById("opt-" + q.correct).classList.add('correct-ans');
+    const hs = document.getElementById('hunter-status');
+    if (chosenOption === q.correct) {
+        playSound('audio-spravne');
+        if (hs) { hs.style.color = '#2ecc71'; hs.innerText = "Žáci: SPRÁVNĚ (Posuňte žáky a pak stiskněte 'Posunout lovce')"; }
+    } else {
+        playSound('audio-chyba');
+        if (hs) { hs.style.color = '#e74c3c'; hs.innerText = "Žáci: CHYBNĚ (Lovec v tomto kole stojí)"; }
+    }
+}
+
+// 6. EXTRA MANUÁLNÍ POHYB LOVCE
+function moveHunterManual() {
+    for (let p = 1; p <= 4; p++) { movePawn(p, 'hunter', 1); }
+    const hs = document.getElementById('hunter-status');
+    if (hs) { hs.style.color = '#ffd700'; hs.innerText = "Lovec posunut. Můžete jít na další otázku."; }
+}
+
+// 7. POHYB FIGUREK A KONTRLA CHYCENÍ
+function movePawn(playerIndex, role, steps) {
+    let s = gameState[playerIndex];
+    if (!s || !s.active) return;
+    if (role === 'player') { s.player += steps; if (s.player > 7) s.player = 7; }
+    else if (role === 'hunter') { s.hunter += steps; if (s.hunter > 7) s.hunter = 7; }
+    if (s.hunter >= s.player && s.player < 7) { s.active = false; playSound('audio-chycen'); }
+    renderPawns();
+    checkGameEnd();
+}
+
+// 8. DESKA A VYKRESLENÍ
 function createBoard() {
     const board = document.getElementById('game-board');
     if (!board) return;
     board.innerHTML = '';
-    
     for (let p = 1; p <= 4; p++) {
         let html = '<div class="lane"><div class="lane-header" id="lane-header-' + p + '">' + playerNames[p] + '</div>';
         for (let c = 0; c <= 7; c++) {
@@ -226,180 +213,60 @@ function createBoard() {
     renderPawns();
 }
 
-// 6. VYKRESLENÍ FIGUREK ŽÁKŮ A LOVCE (L) NA POLÍČKA
 function renderPawns() {
     document.querySelectorAll('.pawn').forEach(el => el.remove());
     for (let p = 1; p <= 4; p++) {
         let s = gameState[p];
         if (!s) continue;
-        
         if (s.active && s.hunter < 7) {
-            const hunterCell = document.getElementById("l-" + p + "-c-" + s.hunter);
-            if (hunterCell) hunterCell.innerHTML += '<div class="pawn hunter">L</div>';
+            const hc = document.getElementById("l-" + p + "-c-" + s.hunter);
+            if (hc) hc.innerHTML += '<div class="pawn hunter">L</div>';
         }
         if (s.active && s.player < 7) {
-            const playerCell = document.getElementById("l-" + p + "-c-" + s.player);
-            if (playerCell) playerCell.innerHTML += '<div class="pawn player">' + p + '</div>';
+            const pc = document.getElementById("l-" + p + "-c-" + s.player);
+            if (pc) pc.innerHTML += '<div class="pawn player">' + p + '</div>';
         }
-        
         let h = document.getElementById("lane-header-" + p);
         let b = document.getElementById("btn-correct-" + p);
         if (h) {
-            if (!s.active) {
-                h.style.color = '#e74c3c'; h.innerText = 'Chycen';
-                if (b) b.style.display = 'none';
-            } else if (s.player === 7) {
-                h.style.color = '#2ecc71'; h.innerText = 'Utekl';
-                if (b) b.style.display = 'none';
-            } else {
-                h.style.color = 'var(--gold)'; h.innerText = playerNames[p];
-            }
-        }
-    }
-}
-// FUNKCE PRO POHYB FIGUREK (ŽÁKŮ I LOVCE)
-function movePawn(playerIndex, role, steps) {
-    let s = gameState[playerIndex];
-    if (!s || !s.active) return;
-
-    if (role === 'player') {
-        s.player += steps;
-        if (s.player > 7) s.player = 7; // Pojistka proti přetečení desky
-    } else if (role === 'hunter') {
-        s.hunter += steps;
-        if (s.hunter > 7) s.hunter = 7;
-    }
-
-    // KONTROLA CHYCENÍ: Pokud lovec dohoní nebo předežene hráče
-    if (s.hunter >= s.player && s.player < 7) {
-        s.active = false;
-        playSound('audio-chycen'); // Pokud máte zvuk pro chycení
-    }
-
-    // Překreslíme desku s novými pozicemi
-    renderPawns();
-    
-    // Zkontrolujeme, zda hra neskončila (zda už všichni neutekli/nebyli chyceni)
-    if (typeof checkGameEnd === "function") {
-        checkGameEnd();
-    }
-}
-
-function revealAnswer(chosenOption) {
-    if (isAnswerRevealed || questions.length === 0) return;
-    isAnswerRevealed = true;
-    
-    let q = questions[currentQIndex];
-    const correctBtn = document.getElementById("opt-" + q.correct);
-    if (correctBtn) {
-        correctBtn.classList.add('correct-ans');
-    }
-    
-    const hs = document.getElementById('hunter-status');
-
-    if (chosenOption === q.correct) {
-        playSound('audio-spravne');
-        if (hs) {
-            hs.style.color = '#2ecc71';
-            hs.innerText = "Žáci: SPRÁVNĚ (Nyní posuňte žáky a pak stiskněte 'Posunout lovce')";
-        }
-    } else {
-        playSound('audio-chyba');
-        if (hs) {
-            hs.style.color = '#e74c3c';
-            hs.innerText = "Žáci: CHYBNĚ (Lovec v tomto kole zůstává stát)";
+            if (!s.active) { h.style.color = '#e74c3c'; h.innerText = 'Chycen'; if (b) b.style.display = 'none'; }
+            else if (s.player === 7) { h.style.color = '#2ecc71'; h.innerText = 'Utekl'; if (b) b.style.display = 'none'; }
+            else { h.style.color = 'var(--gold)'; h.innerText = playerNames[p]; }
         }
     }
 }
 
-function moveHunterManual() {
-    if (typeof movePawn === "function") {
-        for (let p = 1; p <= 4; p++) {
-            movePawn(p, 'hunter', 1);
-        }
-    }
-    const hs = document.getElementById('hunter-status');
-    if (hs) {
-        hs.style.color = '#ffd700';
-        hs.innerText = "Lovec byl posunut. Můžete přejít na další otázku.";
-    }
-}
-
-// 8. OVLÁDÁNÍ TLAČÍTEK OTÁZEK
-function nextQuestion() { 
-    currentQIndex++;
-    loadQuestion(); 
-}
-
-// Funkce zachovává index v mezích pole otázek
-function prevQuestion() {
-    if (questions.length > 0) {
-        currentQIndex = (currentQIndex - 1 + questions.length) % questions.length;
-        loadQuestion();
-    }
-}
-
-// 9. KONTROLA KONCE HRY A TABULKA VÝSLEDKŮ
+// 9. KONEC HRY A RESTART
 function checkGameEnd() {
     let active = false;
-    for (let p = 1; p <= 4; p++) {
-        if (gameState[p] && gameState[p].active && gameState[p].player < 7) active = true;
-    }
-    
+    for (let p = 1; p <= 4; p++) { if (gameState[p] && gameState[p].active && gameState[p].player < 7) active = true; }
     if (!active && Object.keys(playerNames).length > 0) {
-        let sv = [];
-        let cg = [];
-        for (let p = 1; p <= 4; p++) {
-            if (gameState[p].player === 7) sv.push(playerNames[p]);
-            else cg.push(playerNames[p]);
-        }
-        
-        const qCounter = document.getElementById('question-counter');
-        const optA = document.getElementById('opt-A');
-        const qControls = document.querySelector('.quiz-controls');
-        
-        if (qCounter) qCounter.parentElement.style.display = 'none';
-        if (optA) optA.parentElement.style.display = 'none';
-        if (qControls) qControls.style.display = 'none';
-        
+        let sv = [], cg = [];
+        for (let p = 1; p <= 4; p++) { if (gameState[p].player === 7) sv.push(playerNames[p]); else cg.push(playerNames[p]); }
+        if (document.getElementById('question-counter')) document.getElementById('question-counter').parentElement.style.display = 'none';
+        if (document.getElementById('opt-A')) document.getElementById('opt-A').parentElement.style.display = 'none';
+        if (document.querySelector('.quiz-controls')) document.querySelector('.quiz-controls').style.display = 'none';
         const qText = document.getElementById('question-text');
         if (qText) {
-            qText.innerHTML = `
-                <div style="text-align: center; padding: 10px;">
-                    <h2 style="color: var(--gold); margin: 0 0 10px 0;">Konec hry!</h2>
-                    <p>Utekli: ${sv.join(', ') || 'Nikdo'}</p>
-                    <p>Chyceni: ${cg.join(', ') || 'Nikdo'}</p>
-                    <button onclick="resetGame()" style="padding: 10px 20px; font-weight: bold; background-color: #ffd700; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">Hrát znovu</button>
-                </div>
-            `;
+            qText.innerHTML = `<div style="text-align: center; padding: 10px;"><h2 style="color: var(--gold); margin: 0 0 10px 0;">Konec!</h2><p>Utekli: ${sv.join(', ') || 'Nikdo'}</p><p>Chyceni: ${cg.join(', ') || 'Nikdo'}</p><button onclick="resetGame()" style="padding: 10px 20px; font-weight: bold; background-color: #ffd700; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">Hrát znovu</button></div>`;
         }
     }
 }
 
-// 10. RESTART ZÁPASU (ZACHOVÁVÁ INDEX OTÁZKY currentQIndex)
+function nextQuestion() { currentQIndex++; loadQuestion(); }
+function prevQuestion() { if (questions.length > 0) { currentQIndex = (currentQIndex - 1 + questions.length) % questions.length; loadQuestion(); } }
+
 function resetGame() {
     document.getElementById('main-game-layout').style.display = 'none';
     document.getElementById('setup-container').style.display = 'block';
-    
-    const qCounter = document.getElementById('question-counter');
-    const optA = document.getElementById('opt-A');
-    const qControls = document.querySelector('.quiz-controls');
-    
-    if (qCounter) qCounter.parentElement.style.display = 'flex';
-    if (optA) optA.parentElement.style.display = 'flex';
-    if (qControls) qControls.style.display = 'flex';
-    
-    const qText = document.getElementById('question-text');
-    if (qText) qText.innerHTML = "Načítám otázky...";
-    
-    gameState = {};
-    playerNames = {};
+    if (document.getElementById('question-counter')) document.getElementById('question-counter').parentElement.style.display = 'flex';
+    if (document.getElementById('opt-A')) document.getElementById('opt-A').parentElement.style.display = 'flex';
+    if (document.querySelector('.quiz-controls')) document.querySelector('.quiz-controls').style.display = 'flex';
+    if (document.getElementById('question-text')) document.getElementById('question-text').innerHTML = "Načítám otázky...";
+    gameState = {}; playerNames = {};
 }
 
-// Automatické stažení otazky.txt po načtení stránky v prohlížeči
-window.onload = function() { 
-    loadQuestionsFromFile(); 
-};
+window.onload = function() { loadQuestionsFromFile(); };
 </script>
 </body>
 </html>     
