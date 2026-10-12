@@ -247,7 +247,33 @@ function renderPawns() {
         }
     }
 }
+// FUNKCE PRO POHYB FIGUREK (ŽÁKŮ I LOVCE)
+function movePawn(playerIndex, role, steps) {
+    let s = gameState[playerIndex];
+    if (!s || !s.active) return;
 
+    if (role === 'player') {
+        s.player += steps;
+        if (s.player > 7) s.player = 7; // Pojistka proti přetečení desky
+    } else if (role === 'hunter') {
+        s.hunter += steps;
+        if (s.hunter > 7) s.hunter = 7;
+    }
+
+    // KONTROLA CHYCENÍ: Pokud lovec dohoní nebo předežene hráče
+    if (s.hunter >= s.player && s.player < 7) {
+        s.active = false;
+        playSound('audio-chycen'); // Pokud máte zvuk pro chycení
+    }
+
+    // Překreslíme desku s novými pozicemi
+    renderPawns();
+    
+    // Zkontrolujeme, zda hra neskončila (zda už všichni neutekli/nebyli chyceni)
+    if (typeof checkGameEnd === "function") {
+        checkGameEnd();
+    }
+}
 // 7. VYHODNOCENÍ KLIKNUTÍ NA ODPOVĚĎ A POHYB LOVCE
 function revealAnswer(chosenOption) {
     if (isAnswerRevealed || questions.length === 0) return;
