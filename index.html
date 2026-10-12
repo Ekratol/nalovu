@@ -284,7 +284,8 @@ function movePawn(playerIndex, role, steps) {
         checkGameEnd();
     }
 }
-// 7. VYHODNOCENÍ KLIKNUTÍ NA ODPOVĚĎ A POHYB LOVCE
+
+// 8. VYHODNOCENÍ ODPOVĚDI (Bez automatického pohybu lovce!)
 function revealAnswer(chosenOption) {
     if (isAnswerRevealed || questions.length === 0) return;
     isAnswerRevealed = true;
@@ -299,20 +300,31 @@ function revealAnswer(chosenOption) {
         playSound('audio-spravne');
         if (hs) {
             hs.style.color = '#2ecc71';
-            hs.innerText = "Žáci: SPRÁVNĚ (Lovec jde dopředu)";
+            hs.innerText = "Žáci: SPRÁVNĚ (Nyní posuňte žáky a pak stiskněte 'Posunout lovce')";
         }
-        
-        setTimeout(() => {
-            if (typeof movePawn === "function") {
-                for (let p = 1; p <= 4; p++) movePawn(p, 'hunter', 1);
-            }
-        }, 1200);
+        // POZNÁMKA: setTimeout s movePawn pro lovce odsud byl smazán! Lovec čeká.
     } else {
         playSound('audio-chyba');
         if (hs) {
             hs.style.color = '#e74c3c';
-            hs.innerText = "Žáci: CHYBNĚ (Lovec zůstává stát)";
+            hs.innerText = "Žáci: CHYBNĚ (Lovec v tomto kole zůstává stát)";
         }
+    }
+}
+
+// NOVÁ FUNKCE: Pro extra tlačítko na manuální posun lovce
+function moveHunterManual() {
+    // Funkce posune lovce na všech drahách o 1 pole dolů
+    if (typeof movePawn === "function") {
+        for (let p = 1; p <= 4; p++) {
+            movePawn(p, 'hunter', 1);
+        }
+    }
+    
+    const hs = document.getElementById('hunter-status');
+    if (hs) {
+        hs.style.color = '#ffd700';
+        hs.innerText = "Lovec byl posunut. Můžete přejít na další otázku.";
     }
 }
 
