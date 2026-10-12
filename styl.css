@@ -29,7 +29,7 @@ h1 {
     padding: 30px;
     border-radius: 15px;
     border: 1px solid rgba(255,255,255,0.1);
-    max-width: 400px;
+    max-width: 460px; /* Rozšířeno ze 400px na 460px, aby se vše vešlo na jeden řádek */
     width: 100%;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -37,12 +37,53 @@ h1 {
 }
 .setup-screen h2 { color: var(--gold); margin-bottom: 20px; }
 .input-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; text-align: left; }
-.input-group label { font-weight: bold; font-size: 0.9rem; }
-.input-group input { padding: 10px; font-size: 1rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: white; }
+
+/* OPRAVENÉ STYLY PRO FORMULÁŘ: Drží popisky, políčka i výběr pozic rovně vedle sebe */
+.row-setup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.row-setup label {
+    width: 70px;
+    font-weight: bold;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+.row-setup input {
+    flex: 2;
+    min-width: 120px;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.3);
+    color: white;
+    box-sizing: border-box;
+}
+.row-setup select {
+    flex: 1;
+    max-width: 60px;
+    min-width: 50px;
+    padding: 8px;
+    border-radius: 6px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1rem;
+}
+
 .setup-screen button, .quiz-controls button { background-color: var(--accent); color: white; border: none; padding: 12px 25px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
 .setup-screen button:hover, .quiz-controls button:hover { filter: brightness(1.2); }
 .main-layout { display: flex; gap: 20px; max-width: 1200px; width: 100%; }
-.quiz-container { flex: 1; background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; justify-content: space-between; }
+.quiz-container { flex: 1; background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); display: flex; flex-direction: column; justify-content: space-between; }
 .question-box { font-size: 1.5rem; font-weight: bold; margin-bottom: 20px; min-height: 80px; color: var(--gold); }
 .options-list { display: flex; flex-direction: column; gap: 12px; }
 .option-btn { background: rgba(255,255,255,0.1); color: white; border: 2px solid rgba(255,255,255,0.2); padding: 15px; font-size: 1.2rem; text-align: left; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
