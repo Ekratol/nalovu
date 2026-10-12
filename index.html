@@ -101,6 +101,7 @@ let isAnswerRevealed = false;
 let isPlayerMoveAllowed = false; // Na začátku otázky je posun žáků přísně zamčený
 let playerNames = {};
 let gameState = {};
+let movedPlayersInCurrentRound = new Array();
 
 function playSound(id) {
     const el = document.getElementById(id);
@@ -168,8 +169,8 @@ function revealAnswer(chosenOption) {
     if (isAnswerRevealed || questions.length === 0) return;
     isAnswerRevealed = true;
     
-    // Povolíme moderátorovi pohnout žákem, protože odpověď už byla odhalena
-    isPlayerMoveAllowed = true;
+    // Vymažeme seznam posunutých žáků z minulého kola, abychom v tomto kole mohli začít nanovo
+    movedPlayersInCurrentRound = new Array();
     
     const q = questions[currentQIndex];
     if (!q) return;
@@ -184,7 +185,7 @@ function revealAnswer(chosenOption) {
         playSound('audio-spravne');
         if (hs) { 
             hs.style.color = '#2ecc71'; 
-            hs.innerText = "Žáci: SPRÁVNĚ (Posuňte žáky a pak stiskněte 'Posunout lovce')"; 
+            hs.innerText = "Žáci: SPRÁVNĚ (Klikněte na '✓ SPRÁVNĚ' u všech žáků, kteří věděli, pak na pohyb lovce)"; 
         }
         const btnHunter = document.getElementById('btn-hunter-move');
         if (btnHunter) btnHunter.style.display = 'inline-block';
@@ -229,7 +230,7 @@ function prevQuestion() {
     } 
 }
 
-// 8. DESKA A VYKRESLENÍ (OPRAVENO: Klasický směr, vizuální otočení dělá CSS)
+// 8. DESKA A VYKRESLENÍ (Klasické řazení shora dolů: 0 nahoře, 7 dole)
 function createBoard() {
     const board = document.getElementById('game-board');
     if (!board) return;
@@ -237,8 +238,6 @@ function createBoard() {
     
     for (let p = 1; p <= 4; p++) {
         let html = '<div class="lane"><div class="lane-header" id="lane-header-' + p + '">' + playerNames[p] + '</div>';
-        
-        // Vráceno na klasické počítání od 0 do 7
         for (let c = 0; c <= 7; c++) {
             let cls = "cell" + (c === 0 ? " hunter-zone" : c === 7 ? " bank-zone" : "");
             html += '<div class="' + cls + '" id="l-' + p + '-c-' + c + '">' + (c === 0 ? "START L" : c === 7 ? "BANK" : "") + '</div>';
@@ -283,21 +282,25 @@ function renderPawns() {
     checkGameEnd();
 }
 
-// AKTUALIZOVÁNO: Funkce nyní striktně kontroluje zámek a po 1 kliknutí se ihned zablokuje
 function movePawn(playerNum, role, steps) {
     let s = gameState[playerNum];
     if (!s || !s.active) return;
     
-    // POJISTKA: Pokud se ještě neodpovědělo, nebo už se žák v tomto kole posunul, tlačítko nereaguje
-    if (role === 'player' && !isPlayerMoveAllowed) {
+    // POJISTKA 1: Žáky nelze posunout, dokud moderátor neodhalí odpověď (A, B, C)
+    if (role === 'player' && !isAnswerRevealed) {
+        return;
+    }
+    
+    // POJISTKA 2: Konkrétním žákem lze v tomto kole pohnout maximálně JEDNOU
+    if (role === 'player' && movedPlayersInCurrentRound.includes(playerNum)) {
         return;
     }
     
     if (role === 'player') { 
         s.player += steps; 
         
-        // OPĚTOVNÉ ZAMČENÍ: Žák udělal 1 krok, možnost dalšího klikání ihned zablokujeme pro celou třídu
-        isPlayerMoveAllowed = false; 
+        // Zaznamenáme si, že tento konkrétní žák už popošel, takže jeho tlačítko zamkneme
+        movedPlayersInCurrentRound.push(playerNum);
         
         if (s.player > 7) s.player = 7; 
         if (s.player === 7) playSound('audio-spravne');
@@ -344,10 +347,9 @@ function resetGame() {
     if (document.querySelector('.quiz-controls')) document.querySelector('.quiz-controls').style.display = 'flex';
     if (document.getElementById('question-text')) document.getElementById('question-text').innerHTML = "Načítám otázky...";
     gameState = {}; playerNames = {};
-    isPlayerMoveAllowed = false;
+    movedPlayersInCurrentRound = new Array();
 }
 
-// Do načtení nové otázky vložíme opětovné zamčení pohybu žáků
 function originalLoadQuestion() {
     if (questions.length === 0) return;
     if (currentQIndex >= questions.length) currentQIndex = 0;
@@ -358,7 +360,10 @@ function originalLoadQuestion() {
         document.getElementById('opt-B').innerText = "B) " + q.b;
         document.getElementById('opt-C').innerText = "C) " + q.c;
         isAnswerRevealed = false;
-        isPlayerMoveAllowed = false; // ZÁMEK: Nová otázka = žáci jsou opět pevně zamčeni
+        
+        // Nová otázka = kompletně vyčistíme seznam posunutých hráčů z minulého kola
+        movedPlayersInCurrentRound = new Array(); 
+        
         document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('correct-ans'));
         document.getElementById('question-counter').innerText = 'Otázka: ' + (currentQIndex + 1) + ' / ' + questions.length;
         document.getElementById('hunter-status').style.color = '#ffd700';
@@ -371,4 +376,3 @@ window.onload = function() { loadQuestionsFromFile(); };
 </script>
 </body>
 </html>
-
