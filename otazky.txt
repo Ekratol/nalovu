@@ -1,31 +1,40 @@
-Která geologická věda se zabývá studiem minerálů (nerostů)?;Petrologie;Mineralogie;Paleontologie;B
-Co je to minerál z chemického hlediska?;Směs mnoha hornin;Chemický prvek nebo chemická sloučenina;Zkamenělina pravěkého zvířete;B
-Která geologická věda studuje vznik, složení a vlastnosti hornin?;Geografie;Paleontologie;Petrologie;C
-Jak se nazývá věda, která zkoumá vývoj života na Zemi na základě zkamenělin?;Mineralogie;Paleontologie;Geologie;B
-Který minerál je nejtvrdší na Mohsově stupnici tvrdosti?;Křemen;Korund;Diamant;C
-Který minerál má na Mohsově stupnici tvrdost číslo 1 a je nejměkčí?;Mastek;Kalcit;Fluorit;A
-Jak se nazývá hornina, která vznikla utuhnutím žhavého magmatu pod povrchem nebo lávy na povrchu?;Usazená hornina;Vyvřelá hornina;Přeměněná hornina;B
-Která hlubinná vyvřelá hornina se skládá z křemene, živce a slídy?;Čedič;Žula;Pískovec;B
-Která výlevná vyvřelá hornina tvoří typické šestiboké sloupy (např. Panská skála)?;Čedič;Žula;Mramor;A
-Jak se nazývají horniny, které vznikly usazováním úlomků nebo organických zbytků?;Vyvřelé horniny;Usazené horniny;Metamorfované horniny;B
-Která usazená hornina vznikla ze zbytků pravěkých rostlin bez přístupu vzduchu?;Vápenec;Uhlí;Pískovec;B
-Jak vznikají přeměněné (metamorfované) horniny?;Působením vysokého tlaku a teploty v hloubce Země;Vysycháním jezer;Výbuchem sopky;A
-Která přeměněná hornina vzniká metamorfózou vápence a používá se v sochařství?;Rula;Fylit;Mramor;C
-Jak se nazývá svrchní kamenný obal Země, který je rozlámán na litosférické desky?;Atmosféra;Litosféra;Zemské jádro;B
-Která vnitřní sféra Země je nejhlubší a dosahuje nejvyšších teplot?;Zemská kůra;Zemský plášť;Zemské jádro;C
-Co pohání pohyb litosférických desek na zemském povrchu?;Teplo z nitra Země a konvekční proudy;Mořský příliv;Rychlost otáčení Země;A
-Jak se nazývá místo v hloubce Země, kde vzniká zemětřesení?;Epicentrum;Hypocentrum (ohnisko);Kráter;B
-Jak se nazývá žhavá tekutá tavenina, která se nachází pod zemským povrchem?;Láva;Magma;Gejzír;B
-Jak se nazývá magma, které vyvře na zemský povrch při sopečné činnosti?;Magma;Láva;Popel;B
-Kterým přístrojem se měří síla a průběh zemětřesných vln?;Barometr;Seismograf;Anemometr;B
-Jak se nazývají obří vlny způsobené podmořským zemětřesením?;Tornádo;Monzun;Tsunami;C
-Které geologické děje probíhají uvnitř Země a jsou poháněny vnitřním teplem planety?;Endogenní (vnitřní) děje;Exogenní (vnější) děje;Atmosférické děje;A
-Které geologické děje jsou poháněny sluncem, vodou, větrem a gravitací na povrchu?;Vnitřní děje;Vnější (exogenní) děje;Tektonické děje;B
-Jak se nazývá proces rozrušování hornin působením vody, mrazu nebo organismů?;Zvětrávání;Metamorfóza;Sedimentace;A
-Co je to eroze?;Usazování materiálu;Odnášení materiálu větrem, vodou či ledem;Krystalizace minerálů;B
-Jak se nazývá geologické období, ve kterém žili dinosauři?;Prvohory;Druhohory (mezozoikum);Čtvrtohory;B
-Do kterého geologického období řadíme současnost a éru velkého rozvoje člověka?;Třetihory;Čtvrtohory;Starohory;B
-Která éra je známá jako "věk trilobitů", kdy došlo k obrovskému rozvoji mořského života?;Prvohory (paleozoikum);Prahory;Druhohory;A
-Jak se nazývají pozůstatky nebo otisky organismů z minulých geologických období?;Minerály;Zkameněliny (fosilie);Krystaly;B
-Která ložiska vznikají usazováním mikroskopického mořského planktonu a jsou zdrojem paliv?;Ropa a zemní plyn;Železná ruda;Žula a čedič;A
-
+Do které skupiny obratlovců patří žraloci a rejnoci?;Ryby;Paryby;Obojživelníci;B
+Z jakého materiálu je tvořena kostra paryb?;Z kostí;Z chrupavky;Z rohoviny;B
+Který orgán chybí žralokům, takže musí neustále plavat, aby neklesli ke dnu?;Žábry;Postranní čára;Plynový měchýř;C
+Jak se nazývá smyslový orgán ryb, kterým vnímají proudění a tlak vody?;Postranní čára;Proudový receptor;Vodní sluch;A
+Kterým orgánem dýchají dospělé ryby?;Plícemi;Kůží;Žábrami;C
+Jak se nazývá typické srdce ryb?;Plicní srdce;Proudové srdce;Venózní srdce;C
+Čím je pokryto tělo většiny kostnatých ryb?;Slizem a šupinami;Rohovými štítky;Holou kůží;A
+Jak se nazývá rozmnožování ryb, při kterém samice vypouští jikry?;Vnitřní oplození;Tření;Klonování;B
+Která naše ryba je dravá a má protáhlé tělo s tlamou plnou ostrých zubů?;Kapr obecný;Štika obecná;Cejn velký;B
+Která z následujících ryb patří mezi chráněné a žije v čistých horských potocích?;Pstruh potoční;Sumec velký;Karass obecný;A
+Jak se vyvíjejí mláďata obojživelníků?;Přímým vývojem;Proměnou přes larvu (pulce);V děloze matky;B
+Čím dýchá pulec obojživelníků v prvních fázích života?;Plícemi;Kůží;Žábrami;C
+Která sféra srdce obojživelníků je rozdělena na dvě části?;Komora;Předsíně;Tepna;B
+Jakou kůži mají obojživelníci?;Suchou s šupinami;Vlhkou, nahou a prostoupenou žlázami;Porostlou peřím;B
+Který náš ocasatý obojživelník je známý svým černo-žlutým výstražným zbarvením?;Mlok skvrnitý;Čolek obecný;Skokan zelený;A
+Kam kladou obojživelníci svá vajíčka?;Do suchého písku;Do vody;Na listy stromů;B
+Která žába má na prstech přísavné terčíky a žije na stromech a keřích?;Ropucha obecná;Kuňka žlutobřichá;Rosnička zelená;C
+Jak zimují obojživelníci v našich podmínkách?;Odlétají na jih;Upadají do stavu strnulosti (hibernace);Jsou aktivní pod ledem;B
+Patří plazi mezi živočichy se stálou, nebo proměnlivou teplotou těla?;Stálou;Proměnlivou;Teplota se nemění;B
+Čím je pokryto tělo plazů, aby nedocházelo ke ztrátám vody?;Slizkou kůží;Rohovými šupinami nebo štítky;Chrupavkou;B
+Kterým orgánem dýchají všichni plazi včetně těch vodních?;Žábrami;Plícemi;Celým povrchem těla;B
+Jaký typ oplození je typický pro plazy?;Vnitřní oplození;Vnější oplození (tření);Klonování;A
+Který náš jediný jedovatý had má na hřbetě klikatou čáru?;Užovka obojková;Zmije obecná;Slepýš křehký;B
+Kam patří slepýš křehký z hlediska zoologie?;Mezi hady;Mezi ještěrky;Mezi obojživelníky;B
+Který plaz má na břiše a hřbetě pevný kostěný krunýř?;Krokodýl;Ještěrka;Želva;C
+Čím se liší srdce krokodýlů od ostatních plazů?;Mají téměř úplně rozdělenou srdeční komoru;Mají jen jednu předsíň;Nemají srdce;A
+Který smysl mají hadi velmi dobře vyvinutý díky Jacobsonovu orgánu?;Zrak;Sluch;Čich a chuť (pomocí jazyka);C
+Jak se nazývá svlékání vrchní vrstvy kůže u hadů a ještěrek?;Línání (svlek);Růst;Koroze;A
+Která naše užovka žije v blízkosti vody a má za hlavou žluté půlměsíčky?;Užovka hladká;Užovka obojková;Užovka podplamatá;B
+Proč se plazi rádi vyhřívají na slunci?;Aby jim uschla kůže;Slunce potřebují k trávení;Získávají tak tělesné teplo;C
+Která skupina má poprvé v evoluci zárodečné obaly kolem vajíčka (anamiota vs amniota)?;Ryby;Obojživelníci;Plazi;C
+Jak se pohybuje většina našich ještěrek při běhu?;Snaží se létat;Vlní tělem ze strany na stranu;Skáče po zadních nohách;B
+Který orgán umožňuje rybám měnit hloubku ponoru bez úsilí?;Žábry;Plynový měchýř;Srdce;B
+Která ryba nemá čelisti a patří mezi kruhoústé, blízce příbuzné rybám?;Žralok;Mihule;Pstruh;B
+Co je typické pro larvy (pulce) žab na rozdíl od dospělců?;Mají plíce;Mají ocas a nemají nohy;Mají čtyři končetiny;B
+Která žába vylučuje z kůže silné toxiny a má bradavičnatou kůži?;Rosnička zelená;Ropucha obecná;Skokan hnědý;B
+Jaká vajíčka kladou plazi?;Měkká bez skořápky do vody;S vápenatou nebo kožovitou skořápkou na souš;Nekladou vajíčka;B
+Který zástupce plazů je známý schopností měnit barvu kůže podle prostředí?;Chameleon;Krokodýl;Gekon;A
+Jak dýchají mořské želvy?;Žábrami pod vodou;Plícemi, musí se nadechovat nad hladinou;Kůží;B
+Která zemská sféra je klíčová pro kladení vajec obojživelníků?;Litosféra;Hydrosféra;Atmosféra;B
