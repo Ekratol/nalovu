@@ -1,25 +1,51 @@
-Která zemská sféra zahrnuje veškerou vodu na Zemi?;Biosféra;Hydrosféra;Atmosféra;B
-Jak se nazývá plynný obal Země?;Atmosféra;Litosféra;Pedosféra;A
-Která sféra představuje pevný kamenný obal Země?;Litosféra;Biosféra;Hydrosféra;A
-Co je to pedosféra?;Pevný zemský povrch;Půdní obal Země;Všechno živé na Zemi;B
-Která zemská sféra zahrnuje všechny živé organismy?;Hydrosféra;Litosféra;Biosféra;C
-Který plyn je v dnešní atmosféře zastoupen nejvíce?;Kyslík;Dusík;Oxid uhličitý;B
-Který plyn je zcela klíčový pro dýchání většiny živých organismů?;Kyslík;Vodík;Dusík;A
-Jaká vrstva atmosféry nás chrání před nebezpečným ultrafialovým zářením?;Ozonová vrstva;Troposféra;Ionosféra;A
-Kde vznikl první život na Zemi?;Na souši v půdě;V hlubokých jeskyních;V praoceánech;C
-Jak se nazývá proces, při kterém rostliny produkují kyslík za pomoci slunce?;Dýchání;Fotosyntéza;Rozklad;B
-Která sféra dodává rostlinám živiny a ukotvuje jejich kořeny?;Pedosféra;Atmosféra;Hydrosféra;A
-Kolik procent zemského povrchu přibližně pokrývá voda?;Asi 30 procent;Asi 50 procent;Asi 71 procent;C
-Co bylo hlavní podmínkou pro vznik života na Zemi?;Přítomnost tekuté vody;Suché a horké klima;Nedostatek plynů;A
-Jak se nazývají nejjednodušší jednobuněčné organismy bez jádra, které stály u zrodu života?;Bakterie a sinice;Prvoci;Ryby;A
-Která zemská sféra je nejhlubší a tvoří vnitřek naší planety?;Zemské jádro a plášť;Atmosféra;Pedosféra;A
-Co tvoří převážnou část hydrosféry na Zemi?;Sladká voda v řekách;Slaná voda v oceánech;Ledovce;B
-Který plyn v praatmosféře chyběl a objevil se až díky prvním organismům?;Oxid uhličitý;Dusík;Kyslík;C
-Jak se nazývá svrchní úrodná část zemské kůry?;Půda;Magma;Pískovec;A
-Která sféra přímo propojuje a ovlivňuje všechny ostatní sféry, protože obsahuje život?;Litosféra;Biosféra;Hydrosféra;B
-Co pohání koloběh vody v hydrosféře?;Sluneční energie a gravitace;Vnitřní teplo Země;Vítr v atmosféře;A
-Která vrstva atmosféry je nejblíže k zemskému povrchu a vzniká v ní počasí?;Stratosféra;Troposféra;Termosféra;B
-Co je hlavním zdrojem tepla a světla pro život na Zemi?;Měsíc;Slunce;Zemské jádro;B
-Jak se nazývá věda, která zkoumá neživou přírodu a složení zemské kůry?;Biologie;Ekologie;Geologie;C
-Bez které zemské sféry by nemohl existovat vzduch, který dýcháme?;Atmosféra;Hydrosféra;Pedosféra;A
-Které organismy jako první začaly obohacovat atmosféru o kyslík?;První suchozemské rostliny;Sinice v praoceánech;Dinosauři;B
+Která orgánová soustava zajišťuje rozvod kyslíku a živin po celém těle?;Dýchací soustava;Oběhová soustava;Trávicí soustava;B
+Jak se nazývá hlavní poháněcí orgán oběhové soustavy člověka?;Plíce;Játra;Srdce;C
+Které cévy vedou krev směrem od srdce k orgánům?;Tepny;Žíly;Vlásečnice;A
+Která krevní barviva v červených krvinkách na sebe váže kyslík?;Melanin;Hemoglobin;Inzulín;B
+V které části trávicí soustavy dochází k nejintenzivnějšímu vstřebávání živin?;V žaludku;V tlustém střevě;V tenkém střevě;C
+Jak se nazývá největší vnitřní orgán lidského těla, který čistí krev od toxických látek?;Játra;Slinivka břišní;Slezina;A
+Kde v dýchací soustavě dochází k vlastní výměně plynů mezi vzduchem a krví?;V průdušnici;V plicních sklípcích;V hrtanu;B
+Který plochý sval odděluje hrudní a břišní dutinu a je hlavním dýchacím svalem?;Bránice;Mezižeberní sval;Lýtkový sval;A
+Co je základní stavební a funkční jednotkou ledvin?;Neuron;Nefron;Alveolus;B
+Který orgán slouží k dočasnému shromažďování moči před jejím vyloučením?;Močovod;Močová trubice;Močový měchýř;C
+Jak se nazývá ústřední orgán nervové soustavy chráněný lebkou?;Mícha;Mozek;Srdce;B
+Která část mozku odpovídá za udržování rovnováhy a koordinaci pohybů?;Mozeček;Prodloužená mícha;Koncový mozek;A
+Jak se nazývá rychlá, mimovolná reakce těla na podráždění zprostředkovaná nervovou soustavou?;Reflex;Myšlenka;Emoce;A
+Která žláza s vnitřní sekrecí produkuje hormon inzulín?;Štítná žláza;Nadledviny;Slinivka břišní;C
+Který hormon se tvoří v nadledvinách při stresu nebo nebezpečí?;Adrenalin;Testosteron;Estrogen;A
+Kde se v lidském těle nachází zrakový receptor (sítnice)?;V uchu;V oku;Na jazyku;B
+Které kůstky ve středním uchu zajišťují přenos zvukových vibrací?;Kladívko, kovadlinka a třmínek;Kost hrudní a žebra;Kost vřetenní a loketní;A
+Jak se nazývá mužská pohlavní buňka?;Vajíčko;Spermie;Zygota;B
+Kde u žen dochází k vývoji lidského plodu během těhotenství?;Ve vaječníku;V děloze;Ve vejcovodu;B
+Která orgánová soustava chrání tělo před vnějšími vlivy a pomáhá regulovat teplotu?;Kožní soustava;Kosterní soustava;Svalová soustava;A
+Která geologická věda se zabývá studiem minerálů (nerostů)?;Petrologie;Mineralogie;Paleontologie;B
+Co je to minerál z chemického hlediska?;Směs mnoha hornin;Chemický prvek nebo chemická sloučenina;Zkamenělina pravěkého zvířete;B
+Která geologická věda studuje vznik, složení a vlastnosti hornin?;Geografie;Paleontologie;Petrologie;C
+Jak se nazývá věda, která zkoumá vývoj života na Zemi na základě zkamenělin?;Mineralogie;Paleontologie;Geologie;B
+Který minerál je nejtvrdší na Mohsově stupnici tvrdosti?;Křemen;Korund;Diamant;C
+Který minerál má na Mohsově stupnici tvrdost číslo 1 a je nejměkčí?;Mastek;Kalcit;Fluorit;A
+Jak se nazývá hornina, která vznikla utuhnutím žhavého magmatu pod povrchem nebo lávy na povrchu?;Usazená hornina;Vyvřelá hornina;Přeměněná hornina;B
+Která hlubinná vyvřelá hornina se skládá z křemene, živce a slídy?;Čedič;Žula;Pískovec;B
+Která výlevná vyvřelá hornina tvoří typické šestiboké sloupy (např. Panská skála)?;Čedič;Žula;Mramor;A
+Jak se nazývají horniny, které vznikly usazováním úlomků nebo organických zbytků?;Vyvřelé horniny;Usazené horniny;Metamorfované horniny;B
+Která usazená hornina vznikla ze zbytků pravěkých rostlin bez přístupu vzduchu?;Vápenec;Uhlí;Pískovec;B
+Jak vznikají přeměněné (metamorfované) horniny?;Působením vysokého tlaku a teploty v hloubce Země;Vysycháním jezer;Výbuchem sopky;A
+Která přeměněná hornina vzniká metamorfózou vápence a používá se v sochařství?;Rula;Fylit;Mramor;C
+Jak se nazývá svrchní kamenný obal Země, který je rozlámán na litosférické desky?;Atmosféra;Litosféra;Zemské jádro;B
+Která vnitřní sféra Země je nejhlubší a dosahuje nejvyšších teplot?;Zemská kůra;Zemský plášť;Zemské jádro;C
+Co pohání pohyb litosférických desek na zemském povrchu?;Teplo z nitra Země a konvekční proudy;Mořský příliv;Rychlost otáčení Země;A
+Jak se nazývá místo v hloubce Země, kde vzniká zemětřesení?;Epicentrum;Hypocentrum (ohnisko);Kráter;B
+Jak se nazývá žhavá tekutá tavenina, která se nachází pod zemským povrchem?;Láva;Magma;Gejzír;B
+Jak se nazývá magma, které vyvře na zemský povrch při sopečné činnosti?;Magma;Láva;Popel;B
+Kterým přístrojem se měří síla a průběh zemětřesných vln?;Barometr;Seismograf;Anemometr;B
+Jak se nazývají obří vlny způsobené podmořským zemětřesením?;Tornádo;Monzun;Tsunami;C
+Které geologické děje probíhají uvnitř Země a jsou poháněny vnitřním teplem planety?;Endogenní (vnitřní) děje;Exogenní (vnější) děje;Atmosférické děje;A
+Které geologické děje jsou poháněny sluncem, vodou, větrem a gravitací na povrchu?;Vnitřní děje;Vnější (exogenní) děje;Tektonické děje;B
+Jak se nazývá proces rozrušování hornin působením vody, mrazu nebo organismů?;Zvětrávání;Metamorfóza;Sedimentace;A
+Co je to eroze?;Usazování materiálu;Odnášení materiálu větrem, vodou či ledem;Krystalizace minerálů;B
+Jak se nazývá geologické období, ve kterém žili dinosauři?;Prvohory;Druhohory (mezozoikum);Čtvrtohory;B
+Do kterého geologického období řadíme současnost a éru velkého rozvoje člověka?;Třetihory;Čtvrtohory;Starohory;B
+Která éra je známá jako "věk trilobitů", kdy došlo k obrovskému rozvoji mořského života?;Prvohory (paleozoikum);Prahory;Druhohory;A
+Jak se nazývají pozůstatky nebo otisky organismů z minulých geologických období?;Minerály;Zkameněliny (fosilie);Krystaly;B
+Která ložiska vznikají usazováním mikroskopického mořského planktonu a jsou zdrojem paliv?;Ropa a zemní plyn;Železná ruda;Žula a čedič;A
+
