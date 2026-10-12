@@ -229,7 +229,7 @@ function prevQuestion() {
     } 
 }
 
-// 8. DESKA A VYKRESLENÍ
+// 8. DESKA A VYKRESLENÍ (OPRAVENO: Klasický směr, vizuální otočení dělá CSS)
 function createBoard() {
     const board = document.getElementById('game-board');
     if (!board) return;
@@ -237,7 +237,9 @@ function createBoard() {
     
     for (let p = 1; p <= 4; p++) {
         let html = '<div class="lane"><div class="lane-header" id="lane-header-' + p + '">' + playerNames[p] + '</div>';
-        for (let c = 7; c >= 0; c--) {
+        
+        // Vráceno na klasické počítání od 0 do 7
+        for (let c = 0; c <= 7; c++) {
             let cls = "cell" + (c === 0 ? " hunter-zone" : c === 7 ? " bank-zone" : "");
             html += '<div class="' + cls + '" id="l-' + p + '-c-' + c + '">' + (c === 0 ? "START L" : c === 7 ? "BANK" : "") + '</div>';
         }
