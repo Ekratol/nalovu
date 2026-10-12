@@ -213,19 +213,33 @@
                     else cg.push(playerNames[p]);
                 }
                 
-                // Změněno: Tlačítko nyní volá novou šetrnou funkci resetGame() namísto reloadu stránky
-                document.querySelector('.quiz-container').innerHTML = '<div style="text-align: center; padding: 20px;"><h2 style="color: var(--gold);">Konec Hry!</h2><p style="font-size: 1.1rem; margin-top: 20px;">💰 <strong>Zachránění:</strong><br> ' + (sv.length ? sv.join(', ') : 'Nikdo') + '</p><p style="font-size: 1.1rem; margin-top: 20px; color: #e74c3c;">🏹 <strong>Chyceni Lovcem:</strong><br> ' + (cg.length ? cg.join(', ') : 'Nikdo') + '</p><button onclick="resetGame()" style="margin-top: 30px; background-color: var(--accent); color: white; border: none; padding: 12px 25px; font-weight: bold; border-radius: 6px; cursor: pointer;">Hrát znovu</button></div>';
+                // Schováme herní prvky kvízu a ukážeme pouze tabulku výsledků na konci hry
+                document.getElementById('question-counter').parentElement.style.display = 'none';
+                document.getElementById('opt-A').parentElement.style.display = 'none';
+                document.querySelector('.quiz-controls').style.display = 'none';
+                
+                document.getElementById('question-text').innerHTML = `
+                    <div style="text-align: center; padding: 10px;">
+                        <h2 style="color: var(--gold); margin: 0 0 15px 0;">Konec Hry!</h2>
+                        <p style="font-size: 1.1rem; margin: 10px 0;">💰 <strong>Zachránění:</strong><br> ${sv.length ? sv.join(', ') : 'Nikdo'}</p>
+                        <p style="font-size: 1.1rem; margin: 10px 0; color: #e74c3c;">🏹 <strong>Chyceni Lovcem:</strong><br> ${cg.length ? cg.join(', ') : 'Nikdo'}</p>
+                        <button onclick="resetGame()" style="margin-top: 20px; background-color: var(--accent); color: white; border: none; padding: 10px 20px; font-weight: bold; border-radius: 6px; cursor: pointer;">Hrát znovu</button>
+                    </div>
+                `;
                 playSound('audio-znelka');
             }
         }
 
-        // Nová funkce: Vrátí hru na úvodní zadání jmen, ale NEZAHAZUJE zbývající otázky
+        // OPRAVENO: Funkce pouze skryje a ukáže správné panely, aniž by ničila HTML kód tlačítek
         function resetGame() {
             document.getElementById('main-game-layout').style.display = 'none';
             document.getElementById('setup-container').style.display = 'block';
             
-            // Obnovení původního vzhledu kvízového kontejneru pro další hru
-            document.querySelector('.quiz-container').innerHTML = '<div><div style="font-size: 0.9rem; color: #888; display: flex; justify-content: space-between;"><span id="question-counter">Zbývá otázek: 0</span><span id="hunter-status" style="font-weight: bold; color: #ffd700;">Čekám na odpověď...</span></div><div class="question-box" id="question-text">Načítám otázky...</div><div class="options-list"><button class="option-btn" id="opt-A" onclick="revealAnswer(\'A\')">A)</button><button class="option-btn" id="opt-B" onclick="revealAnswer(\'B\')">B)</button><button class="option-btn" id="opt-C" onclick="revealAnswer(\'C\')">C)</button></div></div><div class="quiz-controls"><button onclick="prevQuestion()" style="background:#555;">◀ Přeskočit</button><button onclick="nextQuestion()">Další otázka ▶</button></div>';
+            // Obnovíme viditelnost všech kvízových prvků pro další kolo
+            document.getElementById('question-counter').parentElement.style.display = 'flex';
+            document.getElementById('opt-A').parentElement.style.display = 'flex';
+            document.querySelector('.quiz-controls').style.display = 'flex';
+            document.getElementById('question-text').innerHTML = "Načítám otázky...";
             
             gameState = new Object();
             playerNames = new Object();
