@@ -198,9 +198,20 @@ function revealAnswer(chosenOption) {
 
 // 6. EXTRA MANUÁLNÍ POHYB LOVCE
 function moveHunterManual() {
-    for (let p = 1; p <= 4; p++) { movePawn(p, 'hunter', 1); }
+    // POSUNE LOVCE: Projde všechny 4 ddráhy a posune červenou figurku o 1 pole vpřed
+    for (let p = 1; p <= 4; p++) { 
+        movePawn(p, 'hunter', 1); 
+    }
+    
     const hs = document.getElementById('hunter-status');
-    if (hs) { hs.style.color = '#ffd700'; hs.innerText = "Lovec posunut. Můžete jít na další otázku."; }
+    if (hs) { 
+        hs.style.color = '#ffd700'; 
+        hs.innerText = "Lovec posunut. Můžete jít na další otázku."; 
+    }
+    
+    // SCHOVÁ TLAČÍTKO: Po kliknutí tlačítko zhasne, dokud žáci opět neodpoví správně
+    const btnHunter = document.getElementById('btn-hunter-move');
+    if (btnHunter) btnHunter.style.display = 'none';
 }
 
 // 7. POHYB FIGUREK A KONTRLA CHYCENÍ
