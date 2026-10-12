@@ -94,19 +94,24 @@
     <audio id="audio-chyba" src="chyba.mp3" preload="auto"></audio>
 
     <script>
-        let questions = new Array();
-        let currentQIndex = 0;
-        let isAnswerRevealed = false;
-        let playerNames = new Object();
-        
-        // Založení prázdného stavu, který se vyplní až po kliknutí na Spustit hru
-        let gameState = new Object();
+   // 1. BEZPEČNÁ INICIALIZACE PROMĚNNÝCH
+let questions = [];
+let currentQIndex = 0;
+let isAnswerRevealed = false;
+let playerNames = {};
+let gameState = {};
 
-        function playSound(id) {
-            const el = document.getElementById(id);
-            if (el) { el.currentTime = 0; el.play().catch(e => console.log("Audio block")); }
-        }
- async function loadQuestionsFromFile() {
+// Pomocná funkce pro bezpečné přehrávání zvuku
+function playSound(id) {
+    const el = document.getElementById(id);
+    if (el) { 
+        el.currentTime = 0; 
+        el.play().catch(e => console.log("Audio block:", e)); 
+    }
+}
+
+// 2. OPRAVENÉ NAČÍTÁNÍ OTÁZEK ZE SOUBORU
+async function loadQuestionsFromFile() {
     try {
         const res = await fetch("otazky.txt?t=" + new Date().getTime());
         const text = await res.text();
@@ -134,13 +139,57 @@
         }).filter(q => q !== null);
 
         if (questions.length === 0) {
-            document.getElementById('question-text').innerText = "Chyba: Soubor otazky.txt je prázdný.";
+            const qText = document.getElementById('question-text');
+            if (qText) qText.innerText = "Chyba: Soubor otazky.txt je prázdný.";
         }
-        
     } catch (error) {
-        document.getElementById('question-text').innerText = "Chyba při stahování otazky.txt.";
+        const qText = document.getElementById('question-text');
+        if (qText) qText.innerText = "Chyba při stahování otazky.txt.";
     }
-} // <-- Tady chyběly tyto uzavírací závorky!
+}
+
+// 3. ODOLNÁ FUNKCE PRO SPUŠTĚNÍ HRY (Nespadne, i když chybí HTML prvky nebo funkce)
+function startGame() {
+    console.log("Kliknuto na tlačítko Start. Inicializace hry...");
+    
+    // Přehrání znělky
+    playSound('audio-znelka');
+    
+    // Bezpečné načtení jmen a startovních polí
+    for (let i = 1; i <= 4; i++) {
+        const nameEl = document.getElementById("p" + i + "-name");
+        const startEl = document.getElementById("p" + i + "-start");
+        
+        playerNames[i] = nameEl ? (nameEl.value || "Žák " + i) : "Žák " + i;
+        const startPole = startEl ? (parseInt(startEl.value) || 3) : 3;
+        
+        gameState[i] = {
+            player: startPole,
+            hunter: 0,
+            active: true
+        };
+    }
+    
+    // Schování setupu a zobrazení hry
+    const setupCont = document.getElementById('setup-container');
+    const mainLayout = document.getElementById('main-game-layout');
+    
+    if (setupCont) setupCont.style.style.display = 'none';
+    if (mainLayout) mainLayout.style.display = 'flex';
+    
+    // BEZPEČNÉ VOLÁNÍ NAVAZUJÍCÍCH FUNKCÍ
+    if (typeof createBoard === "function") {
+        createBoard();
+    } else {
+        console.error("CHYBA: Funkce 'createBoard' v kódu chybí nebo je špatně pojmenovaná!");
+    }
+    
+    if (typeof loadQuestion === "function") {
+        loadQuestion();
+    } else {
+        console.error("CHYBA: Funkce 'loadQuestion' v kódu chybí nebo je špatně pojmenovaná!");
+    }
+}
 
 function loadQuestion() {
     // Ochrana: Pokud dojdou otázky, skočí to zase na první, aby hra nespadla
