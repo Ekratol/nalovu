@@ -255,7 +255,7 @@ function createBoard() {
         `;
     }
     renderPawns();
-}     
+}
 
 function renderPawns() {
     document.querySelectorAll('.pawn').forEach(el => el.remove());
@@ -291,8 +291,7 @@ function renderPawns() {
         }
     }
     checkGameEnd();
-}
-
+}     
 function movePawn(playerNum, role, steps) {
     let s = gameState[playerNum];
     if (!s || !s.active) return;
@@ -334,7 +333,7 @@ function checkGameEnd() {
         if (document.querySelector('.quiz-controls')) document.querySelector('.quiz-controls').style.display = 'none';
         const qText = document.getElementById('question-text');
         if (qText) {
-            qText.innerHTML = `<div style="text-align: center; padding: 10px;"><h2 style="color: var(--gold); margin: 0 0 10px 0;">Konec!</h2><p>Utekli: ${sv.join(', ') || 'Nikdo'}</p><p>Chyceni: ${cg.join(', ') || 'Nikdo'}</p><button onclick="resetGame()" style="padding: 10px 20px; font-weight: bold; background-color: #ffd700; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">Hrát znovu</button></div>`;
+            qText.innerHTML = `<div style="text-align: center; padding: 10px;"><h2 style="color: var(--gold); margin: 0 0 10px 0;">Konec!</h2><p>Utekli: ${sv.join(', ') || 'Nikdom'}</p><p>Chyceni: ${cg.join(', ') || 'Nikdo'}</p><button onclick="resetGame()" style="padding: 10px 20px; font-weight: bold; background-color: #ffd700; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">Hrát znovu</button></div>`;
         }
         playSound('audio-znelka');
     }
@@ -374,3 +373,4 @@ window.onload = function() { loadQuestionsFromFile(); };
 </script>
 </body>
 </html>
+
