@@ -166,15 +166,33 @@ function loadQuestion() {
 function revealAnswer(chosenOption) {
     if (isAnswerRevealed || questions.length === 0) return;
     isAnswerRevealed = true;
-    let q = questions[currentQIndex];
-    if (document.getElementById("opt-" + q.correct)) document.getElementById("opt-" + q.correct).classList.add('correct-ans');
+    
+    const q = questions[currentQIndex];
+    if (!q) return;
+
+    if (document.getElementById("opt-" + q.correct)) {
+        document.getElementById("opt-" + q.correct).classList.add('correct-ans');
+    }
+    
     const hs = document.getElementById('hunter-status');
+    
     if (chosenOption === q.correct) {
         playSound('audio-spravne');
-        if (hs) { hs.style.color = '#2ecc71'; hs.innerText = "Žáci: SPRÁVNĚ (Posuňte žáky a pak stiskněte 'Posunout lovce')"; }
+        if (hs) { 
+            hs.style.color = '#2ecc71'; 
+            hs.innerText = "Žáci: SPRÁVNĚ (Posuňte žáky a pak stiskněte 'Posunout lovce')"; 
+        }
+        
+        // PRIDAT TENTO ŘÁDEK: Rozsvítí červené tlačítko Lovce na obrazovce
+        const btnHunter = document.getElementById('btn-hunter-move');
+        if (btnHunter) btnHunter.style.display = 'inline-block';
+        
     } else {
         playSound('audio-chyba');
-        if (hs) { hs.style.color = '#e74c3c'; hs.innerText = "Žáci: CHYBNĚ (Lovec v tomto kole stojí)"; }
+        if (hs) { 
+            hs.style.color = '#e74c3c'; 
+            hs.innerText = "Žáci: CHYBNĚ (Lovec v tomto kole stojí)"; 
+        }
     }
 }
 
