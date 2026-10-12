@@ -163,6 +163,16 @@ function startGame() {
     if (mainLayout) mainLayout.style.display = 'flex';
     
     createBoard();
+      if (typeof createBoard === "function") createBoard();
+    
+    // OPRAVA: Pokud už jsme v předchozí hře nějaké otázky odehráli, 
+    // posuneme index před načtením na další otázku, aby tam nezůstávala ta stará.
+    if (currentQIndex > 0) {
+        currentQIndex++;
+    }
+    
+    if (typeof loadQuestion === "function") loadQuestion();
+}
     loadQuestion();
 }
 // 4. ZOBRAZENÍ AKTUÁLNÍ OTÁZKY
