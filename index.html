@@ -224,8 +224,10 @@ function nextQuestion() {
 function prevQuestion() { 
     const btnHunter = document.getElementById('btn-hunter-move');
     if (btnHunter) btnHunter.style.display = 'none';
+    
+    // OPRAVENO: Tlačítko nyní skočí na DALŠÍ otázku v seznamu (+ 1 namísto - 1)
     if (questions.length > 0) { 
-        currentQIndex = (currentQIndex - 1 + questions.length) % questions.length; 
+        currentQIndex = (currentQIndex + 1) % questions.length; 
         loadQuestion(); 
     } 
 }
