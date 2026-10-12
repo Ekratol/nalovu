@@ -90,7 +90,14 @@ h1 {
 .option-btn:hover { background: var(--accent); }
 .option-btn.correct-ans { background-color: #2ecc71 !important; border-color: #27ae60; font-weight: bold; }
 .board-container { background: #111a36; padding: 15px; border-radius: 15px; display: flex; gap: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-.lane { display: flex; flex-direction: column; width: 90px; background: rgba(255,255,255,0.02); border-radius: 8px; padding: 5px; }
+.lane {
+    display: flex;
+    flex-direction: column-reverse; /* TENTO ŘÁDEK OTOČÍ DRÁHU: 0 bude nahoře, 7 dole */
+    width: 90px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 8px;
+    padding: 5px;
+}
 .lane-header { text-align: center; font-weight: bold; font-size: 0.9rem; margin-bottom: 5px; color: var(--gold); text-shadow: 1px 1px 2px black; }
 .cell { height: 55px; border: 1px solid rgba(255,255,255,0.1); margin: 2px 0; border-radius: 4px; position: relative; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem; background: rgba(255,255,255,0.03); }
 .cell.hunter-zone { border-color: rgba(231, 76, 60, 0.4); }
