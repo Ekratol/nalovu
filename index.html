@@ -298,77 +298,91 @@ function loadQuestion() {
         }
 
         // OPRAVENO: Funkce pouze skryje a ukáže správné panely, aniž by ničila HTML kód tlačítek
-        function resetGame() {
-            document.getElementById('main-game-layout').style.display = 'none';
-            document.getElementById('setup-container').style.display = 'block';
-            
-            // Obnovíme viditelnost všech kvízových prvků pro další kolo
-            document.getElementById('question-counter').parentElement.style.display = 'flex';
-            document.getElementById('opt-A').parentElement.style.display = 'flex';
-            document.querySelector('.quiz-controls').style.display = 'flex';
-            document.getElementById('question-text').innerHTML = "Načítám otázky...";
-            
-            gameState = new Object();
-            playerNames = new Object();
-        }
+    function resetGame() {
+    document.getElementById('main-game-layout').style.display = 'none';
+    document.getElementById('setup-container').style.display = 'block';
+    
+    // Obnovíme viditelnost všech kvízových prvků pro další kolo
+    document.getElementById('question-counter').parentElement.style.display = 'flex';
+    document.getElementById('opt-A').parentElement.style.display = 'flex';
+    document.querySelector('.quiz-controls').style.display = 'flex';
+    document.getElementById('question-text').innerHTML = "Načítám otázky...";
+    
+    gameState = new Object();
+    playerNames = new Object();
+    // POZNÁMKA: currentQIndex ZDE NEVYNULUJEME, aby v dalším kole otázky pokračovaly dál!
+}
 
-        function loadQuestion() {
-            if (questions.length === 0) {
-                document.getElementById('question-text').innerText = "Všechny otázky byly vyčerpány! Doplňte soubor otazky.txt.";
-                document.getElementById('question-counter').innerText = "Zbývá otázek: 0";
-                return;
-            }
-            isAnswerRevealed = false;
-            document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('correct-ans'));
-            let q = questions[currentQIndex];
-            document.getElementById('question-counter').innerText = 'Zbývá otázek: ' + questions.length;
-            document.getElementById('hunter-status').style.color = '#ffd700';
-            document.getElementById('hunter-status').innerText = "Čekám na odpověď žáků...";
-            document.getElementById('question-text').innerText = q.q;
-            document.getElementById('opt-A').innerText = "A) " + q.a;
-            document.getElementById('opt-B').innerText = "B) " + q.b;
-            document.getElementById('opt-C').innerText = "C) " + q.c;
-        }
-      function revealAnswer(chosenOption) {
-            if (isAnswerRevealed || questions.length === 0) return;
-            isAnswerRevealed = true;
-            let q = questions[currentQIndex];
-            document.getElementById("opt-" + q.correct).classList.add('correct-ans');
-            const hs = document.getElementById('hunter-status');
+function loadQuestion() {
+    if (questions.length === 0) {
+        document.getElementById('question-text').innerText = "Všechny otázky byly vyčerpány! Doplňte soubor otazky.txt.";
+        document.getElementById('question-counter').innerText = "Zbývá otázek: 0";
+        return;
+    }
+    
+    // Ochrana přetečení indexu (pokud dojdeme na konec pole, skočíme zase na první otázku)
+    if (currentQIndex >= questions.length) {
+        currentQIndex = 0;
+    }
 
-            if (chosenOption === q.correct) {
-                playSound('audio-spravne');
-                hs.style.color = '#2ecc71';
-                hs.innerText = "Žáci: SPRÁVNĚ (Lovec jde dopředu)";
-                
-                // OPRAVENO: Lovec se posune dopředu POUZE při správné odpovědi
-                setTimeout(() => {
-                    for (let p = 1; p <= 4; p++) movePawn(p, 'hunter', 1);
-                }, 1200);
-            } else {
-                playSound('audio-chyba');
-                hs.style.color = '#e74c3c';
-                hs.innerText = "Žáci: CHYBNĚ (Lovec zůstává stát)";
-                // Zde chybí kód pro pohyb Lovce, takže Lovec při chybě stojí!
-            }
+    isAnswerRevealed = false;
+    document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('correct-ans'));
+    
+    let q = questions[currentQIndex];
+    document.getElementById('question-counter').innerText = 'Otázka číslo: ' + (currentQIndex + 1) + ' / ' + questions.length;
+    document.getElementById('hunter-status').style.color = '#ffd700';
+    document.getElementById('hunter-status').innerText = "Čekám na odpověď žáků...";
+    document.getElementById('question-text').innerText = q.q;
+    document.getElementById('opt-A').innerText = "A) " + q.a;
+    document.getElementById('opt-B').innerText = "B) " + q.b;
+    document.getElementById('opt-C').innerText = "C) " + q.c;
+}
 
-            questions.splice(currentQIndex, 1);
-            if (currentQIndex >= questions.length && questions.length > 0) {
-                currentQIndex = questions.length - 1;
-            }
-        }
+// OPRAVENO: Přidána chybějící složená závorka { hned za definici funkce
+function revealAnswer(chosenOption) {
+    if (isAnswerRevealed || questions.length === 0) return;
+    isAnswerRevealed = true;
+    
+    let q = questions[currentQIndex];
+    document.getElementById("opt-" + q.correct).classList.add('correct-ans');
+    const hs = document.getElementById('hunter-status');
+
+    if (chosenOption === q.correct) {
+        playSound('audio-spravne');
+        hs.style.color = '#2ecc71';
+        hs.innerText = "Žáci: SPRÁVNĚ (Lovec jde dopředu)";
         
-        function nextQuestion() { loadQuestion(); }
-        
-        function prevQuestion() {
-            if (questions.length > 0) {
-                currentQIndex = (currentQIndex + 1) % questions.length;
-                loadQuestion();
+        // OPRAVENO: Lovec se posune dopředu POUZE při správné odpovědi
+        setTimeout(() => {
+            if (typeof movePawn === "function") {
+                for (let p = 1; p <= 4; p++) movePawn(p, 'hunter', 1);
             }
-        }
+        }, 1200);
+    } else {
+        playSound('audio-chyba');
+        hs.style.color = '#e74c3c';
+        hs.innerText = "Žáci: CHYBNĚ (Lovec zůstává stát)";
+        // Zde chybí kód pro pohyb Lovce, takže Lovec při chybě stojí!
+    }
+}
 
-        window.onload = function() { loadQuestionsFromFile(); };
-    </script>
+function nextQuestion() { 
+    // Posuneme index na další otázku
+    currentQIndex++;
+    loadQuestion(); 
+}
+
+function prevQuestion() {
+    // Posuneme index na předchozí otázku
+    if (questions.length > 0) {
+        currentQIndex = (currentQIndex - 1 + questions.length) % questions.length;
+        loadQuestion();
+    }
+}
+
+window.onload = function() { 
+    loadQuestionsFromFile(); 
+};
+</script>
 </body>
 </html>
-
