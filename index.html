@@ -269,6 +269,7 @@ function createBoard() {
             html += '<div class="' + cls + '" id="l-' + p + '-c-' + c + '">' + (c === 0 ? "START L" : c === 7 ? "BANK" : "") + '</div>';
         }
         html += '<div class="manual-controls" id="controls-container-' + p + '" style="justify-content: center; background: none; padding: 5px 0;"><button id="btn-correct-' + p + '" onclick="movePawn(' + p + ', \'player\', 1)" style="background-color: #2ecc71; color: white; border: none; padding: 8px 12px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; font-size: 0.8rem;">✓ SPRÁVNĚ</button></div></div>';
+        
         board.innerHTML += html;
     }
     const controlsDiv = document.querySelector('.quiz-controls');
