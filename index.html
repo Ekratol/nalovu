@@ -260,8 +260,8 @@ function prevQuestion() {
         loadQuestion(); 
     } 
 }
-// 9. GENEROVÁNÍ DESKY (OPRAVENO: Odstraněna přebytečná uvozovka)
-// 8. DESKA A VYKRESLENÍ (OPRAVENO: Vráceny správné parametry pro pohyb žáků)
+
+// 8. DESKA A VYKRESLENÍ (OPRAVENO: Odstraněny zkomolené pravé závorky)
 function createBoard() {
     const board = document.getElementById('game-board');
     if (!board) return;
@@ -273,14 +273,13 @@ function createBoard() {
             let cls = "cell" + (c === 0 ? " hunter-zone" : c === 7 ? " bank-zone" : "");
             html += '<div class="' + cls + '" id="l-' + p + '-c-' + c + '">' + (c === 0 ? "START L" : c === 7 ? "BANK" : "") + '</div>';
         }
-        // OPRAVENO: Volání funkce movePawn má nyní správně roli 'player' a krok 1
         html += '<div class="manual-controls" id="controls-container-' + p + '" style="justify-content: center; background: none; padding: 5px 0;"><button id="btn-correct-' + p + '" onclick="movePawn(' + p + ', \'player\', 1)" style="background-color: #2ecc71; color: white; border: none; padding: 8px 12px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; font-size: 0.8rem;">✓ SPRÁVNĚ</button></div></div>';
         board.innerHTML += html;
     }
     
     const controlsDiv = document.querySelector('.quiz-controls');
     if (controlsDiv) {
-        controlsDiv.innerHTML = '<button onclick="prevQuestion()" style="background:#555;">◀ Přeskočit</button><button onclick="moveHunterManual()" id="btn-hunter-move" style="background-color: #e74c3c; display: none; color: white; border: none; padding: 10px 15px; font-weight: bold; border-radius: 6px; cursor: pointer;">\u{1F3C3} POHYB LOVCE \u{25B6}</button><button onclick="nextQuestion()">Další otázka \u{25B6}</button>';
+        controlsDiv.innerHTML = '<button onclick="prevQuestion()" style="background:#555;">◀ Přeskočit</button><button onclick="moveHunterManual()" id="btn-hunter-move" style="background-color: #e74c3c; display: none; color: white; border: none; padding: 10px 15px; font-weight: bold; border-radius: 6px; cursor: pointer;">🏃 POHYB LOVCE ▶</button><button onclick="nextQuestion()">Další otázka ▶</button>';
     }
     renderPawns();
 }
