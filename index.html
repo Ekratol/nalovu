@@ -283,13 +283,7 @@ function createBoard() {
     }
     renderPawns();
 }
-    
-    const controlsDiv = document.querySelector('.quiz-controls');
-    if (controlsDiv) {
-        controlsDiv.innerHTML = '<button onclick="prevQuestion()" style="background:#555;">◀ Přeskočit</button><button onclick="moveHunterManual()" id="btn-hunter-move" style="background-color: #e74c3c; display: none; color: white; border: none; padding: 10px 15px; font-weight: bold; border-radius: 6px; cursor: pointer;">\u{1F3C3} POHYB LOVCE \u{25B6}</button><button onclick="nextQuestion()">Další otázka \u{25B6}</button>';
-    }
-    renderPawns();
-}
+
 // 10. VYKRESLOVÁNÍ FIGUREK + POPISKY DOLE MÍSTO TLAČÍTEK
 function renderPawns() {
     document.querySelectorAll('.pawn').forEach(el => el.remove());
