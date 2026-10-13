@@ -257,7 +257,7 @@ function prevQuestion() {
         loadQuestion(); 
     } 
 }
-// 9. GENEROVÁNÍ DESKY
+// 9. GENEROVÁNÍ DESKY (OPRAVENO: Odstraněna přebytečná uvozovka)
 function createBoard() {
     const board = document.getElementById('game-board');
     if (!board) return;
@@ -359,5 +359,3 @@ window.onload = function() { loadQuestionsFromFile(); };
 </script>
 </body>
 </html>
-            
-                
