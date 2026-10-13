@@ -1,50 +1,77 @@
-Která věda se zabývá studiem původu, vývoje a chování člověka?;Antropologie;Archeologie;Geologie;A
-Do které skupiny savců řadíme člověka z hlediska zoologie?;Šelmy;Hlodavci;Primáti;C
-Který živočich je evolučně nejbližším žijícím příbuzným člověka?;Šimpanz;Orangutan;Pavián;A
-Jak se nazývá proces historického vývoje a vzniku člověka jako biologického druhu?;Fotosyntéza;Antropogeneze;Metamorfóza;B
-Který dávný předek člověka žil v Africe, chodil po dvou a patřil mezi první homonidy?;Australopiték;Neandrtálec;Člověk vzpřímený;A
-Jak se latinsky nazývá rod, do kterého patří moderní člověk i jeho přímí předci?;Homo;Australopithecus;Pan;A
-Který druh člověka jako první vyráběl jednoduché kamenné nástroje?;Člověk zručný;Člověk vzpřímený;Člověk rozumný;A
-Který předek člověka jako první začal systematicky používat oheň?;Člověk zručný;Člověk vzpřímený (Homo erectus);Člověk rozumný;B
-Který poddruh člověka žil v Evropě během doby ledové a byl robustně stavěný?;Homo habilis;Neandrtálec;Homo erectus;B
-Jak zní vědecký název pro současného moderního člověka?;Homo erectus;Homo sapiens;Homo habilis;B
-Kde podle vědeckých důkazů leží kolébka lidstva, tedy kde vznikl Homo sapiens?;V Evropě;V Asii;V Africe;C
-Co bylo klíčovým znakem při vývoji člověka, který uvolnil ruce pro práci?;Vznik řeči;Vzpřímená chůze po dvou končetinách;Ztráta srsti;B
-Jak se v průběhu evoluce člověka měnil objem mozkovny?;Zmenšoval se;Zvětšoval se;Zůstal naprosto stejný;B
-Která lidská rasa (plemeno) je původní v oblasti Evropy, Blízkého východu a Indie?;Mongoloidní;Negroidní;Europeidní;C
-Který znak je typický pro původní obyvatele mongoloidní rasy?;Tmavá silně kudrnatá kůže;Kožní řasa na horním očním víčku;Úzký vysoký nos;B
-Jak se odborně nazývá míšení různých lidských ras?;Hybridizace;Rasová integrace;Míšectví;C
-Kdo je to mulat?;Míšenec rasy europeidní a negroidní;Míšenec rasy europeidní a mongoloidní;Míšenec rasy negroidní a mongoloidní;A
-Kdo je to mestic?;Míšenec rasy europeidní a mongoloidní (např. indiánů);Míšenec rasy europeidní a negroidní;Potomek dvou neandrtálců;A
-Jsou lidské rasy samostatnými biologickými druhy?;Ano, jsou to různé druhy;Ne, všechny rasy patří do jednoho druhu Homo sapiens;Ano, ale jen některé;B
-Co je hlavní příčinou různého zbarvení kůže u lidských ras?;Množství pigmentu melaninu v kůži;Rozdílná strava;Množství tuku pod kůží;A
-Jak se nazývá pavědecká a nebezpečná teorie, která tvrdí, že některé rasy jsou nadřazené jiným?;Ekologie;Rasismus;Humanismus;B
-Co je základní stavební a funkční jednotkou lidského těla?;Tkáň;Buňka;Orgán;B
-Která část lidské buňky obsahuje genetickou informaci (DNA) a řídí její činnost?;Jádro;Mitochondrie;Cytoplazma;A
-Jak se nazývá polotekutá hmota, která vyplňuje vnitřek buňky?;Buněčná stěna;Jádro;Cytoplazma;C
-Které organely slouží jako energetická centra buňky a probíhá v nich buněčné dýchání?;Ribozomy;Mitochondrie;Lysozomy;B
-Co tvoří povrch lidské buňky a zajišťuje výměnu látek s okolím?;Buněčná stěna;Prvok;Cytoplazmatická membrána;C
-Které organely v živočišné buňce zajišťují tvorbu (syntézu) bílkovin?;Ribozomy;Vakuoly;Chloroplasty;A
-Nachází se v lidských buňkách buněčná stěna a chloroplast?;Ano, obojí;Ne, tyto struktury mají pouze buňky rostlin;Pouze buněčná stěna;B
-Jak se nazývá soubor buněk, které mají stejný tvar, původ a plní stejnou funkci?;Orgán;Tkáň;Organismus;B
-Která tkáň kryje povrch těla a vystýlá vnitřní orgány?;Epitulová tkáň (epitel);Nervová tkáň;Svalová tkáň;A
-Do které skupiny tkání řadíme kosti, chrupavky a vaziva?;Tkáně krycí;Tkáně svalové;Tkáně pojivové;C
-Která pojivová tkáň je nejtvrdší a tvoří kostru člověka?;Vazivo;Chrupavka;Kost;C
-Co tvoří tekutou složku pojivových tkání a koluje v cévách?;Krev;Mozkomíšní mok;Slina;A
-Která tkáň má schopnost se stahovat a umožňuje pohyb lidského těla?;Nervová tkáň;Svalová tkáň;Pojivová tkáň;B
-Který typ svalové tkáně ovládáme vůlí a tvoří kosterní svaly?;Hladká svalovina;Příčně pruhovaná svalovina;Srdeční svalovina;B
-Kde v těle najdeme hladkou svalovinu, kterou neumíme ovládat vůlí?;V kosterních svalech rukou;Ve stěnách žaludku a střev;V srdeční stěně;B
-Který orgán je tvořen speciálním typem svaloviny, která pracuje neúnavně po celý život?;Plíce;Srdce;Játra;B
-Která tkáň zajišťuje příjem, zpracování a vedení vzruchů v těle?;Nervová tkáň;Krycí tkáň;Kostní tkáň;A
-Jak se nazývá základní buňka nervové tkáně?;Neuron;Nefron;Leukocyt;A
-Jak se nazývají krátké výběžky nervové buňky, které přijímají podněty?;Neurity;Dendrity;Axony;B
-Jak se nazývá dlouhý výběžek neuronu, který vede vzruch směrem od buňky?;Dendrit;Jádro;Axon (neurit);C
-Jak se nazývá spojení mezi dvěma nervovými buňkami, kde dochází k přenosu vzruchu?;Synapse;Reflex;Struna;A
-Která sféra lidského těla je tvořena souborem tkání plnících konkrétní úkol (např. žaludek)?;Buňka;Orgán;Jedinec;B
-Kolik chromozomů obsahuje běžná lidská tělesná buňka?;23;46;48;B
-Které buňky v lidském těle mají schopnost přenášet kyslík?;Bílé krvinky;Červené krvinky;Krevní destičky;B
-Který prvek je nezbytnou součástí kostní tkáně a dodává jí pevnost?;Vápník;Železo;Jód;A
-Co vyplňuje vnitřek dlouhých kostí a tvoří se v tom krevní buňky?;Kostní dřeň;Chrupavka;Míza;A
-Jak se nazývá ochranné pouzdro kolem mozku tvořené plochými kostmi?;Páteř;Hrudník;Lebka;C
-Která tkáň tvoří ušní boltec a meziobratlové ploténky?;Vazivo;Chrupavka;Kost;B
-Co pohání evoluční změny a adaptaci člověka na různé přírodní podmínky?;Přírodní výběr a mutace;Pouze lidská vůle;Stabilní klima;A
+Jak se ve Scratchi nazývá hlavní postava nebo jakýkoliv grafický objekt?;Kostým;Scéna;Postava (Sprite);C
+Jakou barvu mají bloky, které ovládají pohyb postavy?;Modrou;Zelenou;Žlutou;A
+Která událost se nejčastěji používá pro spuštění celého programu?;Po kliknutí na zelenou vlaječku;Po kliknutí na červené tlačítko;Po stisknutí klávesy mezerník;A
+Jakým blokem zařídíte, aby postava šla dopředu?;Otoč se o 15 stupňů;Skoč na náhodnou pozici;Dopředu o 10 kroků;C
+Která kategorie bloků (oranžová) umožňuje programu opakovat činnost nebo rozhodovat?;Pohyb;Ovládání;Zvuk;B
+Co dělá blok Opakuj 10krát?;Spustí 10 různých programů;Opakuje bloky vložené uvnitř přesně 10krát;Smaže 10 postav;B
+Jakou barvu mají bloky Události, které spouští kód (např. po stisknutí klávesy)?;Žlutou;Fialovou;Světle modrou;A
+Který blok použijete, aby postava na obrazovce něco napsala v bublině?;Bublina;Řekni Ahoj! na 2 sekundy;Změň kostým na;B
+Kde se odehrává veškerý děj a kde se pohybují postavy?;V batohu;Na Scéně (Stage);V malování;B
+Co se stane s postavou, když použijete blok Skryj se?;Postava zmizí ze scény, ale program běží dál;Postava se smaže z počítače;Postava změní barvu;A
+Jak zařídíte, aby skrytá postava byla na scéně opět vidět?;Použiji blok Ukaž se;Použiji blok Změň kostým;Dvakrát kliknu na obrazovku;A
+Jakou barvu mají bloky Vzhled, které mění kostýmy a bubliny?;Zelenou;Fialovou;Růžovou;B
+Co určuje pozice X na scéně?;Svislou polohu (nahoru a dolů);Vodorovnou polohu (vlevo a vpravo);Velikost postavy;B
+Co určuje pozice Y na scéně?;Svislou polohu (nahoru a dolů);Vodorovnou polohu (vlevo a vpravo);Směr otočení;A
+Jaké souřadnice [X, Y] má přesný střed scény ve Scratchi?;[100, 100];[0, 0];[240, 180];B
+Kterým blokem otočíte postavu hlavou dolů nebo na bok?;Otoč se o stupně;Dopředu o kroky;Změň velikost o;A
+Co dělá blok opakuj stále?;Opakuje kód uvnitř do nekonečna, dokud program nezastavíme;Spustí program jednou za hodinu;Opakuje kód desetkrát;A
+Která kategorie bloků obsahuje matematické operace jako sčítání nebo porovnávání?;Proměnné;Operátory (světle zelená);Vnímání;B
+Který blok použijete pro větvení programu, když se má něco stát jen za určité podmínky?;Blok Když ..., tak ...;Blok Opakuj;Blok Čekej;A
+Jakou barvu mají bloky Vnímání (např. dotýká se barvy)?;Světle modrou;Oranžovou;Tmavě modrou;A
+Který blok detekuje, že hráč stiskl konkrétní klávesu na klávesnici?;Klávesa stisknuta?;Když kliknu na postavu;Čekej než klávesa;A
+Kam ukládáme hodnoty, které se během hry mění (např. Skóre nebo Počet životů)?;Do bloku Pohyb;Do Proměnné;Do Kostýmu;B
+Jak změníte vzhled postavy, aby to vypadalo, že například utíká?;Změním její pozici Y;Přepnu na její další kostým;Použiji blok Přejdi na pozici;B
+Který blok musíte použít, aby projekt začal po kliknutí na zelenou vlaječku?; po kliknutí na mezerník; po kliknutí na zelenou vlaječku; když se změní pozadí; B
+Ve které kategorii najdete blok pro změnu kostýmu postavy?; Pohyb; Události; Vzhled; C
+Co se stane, když použijete blok „dopředu 10 kroků“?; Postava se posune dopředu; Postava se otočí; Postava zmizí; A
+Jak se ve Scratchi říká obrázkovému pozadí scény?; Kostým; Scéna/Pozadí; Proměnná; B
+Který blok použijete, pokud chcete, aby se nějaká akce opakovala stále dokola bez přestání?; opakuj 10krát; opakuj dokud nenastane; opakuj stále; C
+Jak můžete do projektu přidat novou postavu?; Kliknutím na ikonu s hlavou kočky vpravo dole; Kliknutím na soubor v horním menu; Stisknutím klávesy Enter; A
+Co dělá blok „skoč na náhodná pozice“?; Přesune postavu na náhodné místo na scéně; Otočí postavu o náhodný úhel; Změní barvu postavy; A
+Který blok použijete, aby postava chvíli počkala, než udělá další věc?; čekej 1 sekund; opakuj stále; dopředu 10 kroků; A
+Jak se nazývají různé podoby nebo obrázky jedné postavy, které umožňují například animaci chůze?; Kostýmy; Pozadí; Zvuky; A
+Kam skládáte programové bloky, abyste postavu rozpohybovali?; Do batohu; Na plochu scénářů (kódovací plochu); Do editoru obrázků; B
+Co se stane s postavou, když použijete blok „skryj se“?; Postava se smaže z projektu; Postava nebude na scéně vidět; Postava se zmenší; B
+Jak se jmenuje kategorie bloků, které mají světle modrou barvu a slouží k pohybu postav?; Události; Vzhled; Pohyb; C
+Ve které kategorii najdete bloky pro přehrávání hudby a zvukových efektů?; Zvuk; Vnímání; Operátory; A
+Co znamená, když má blok tvar šestiúhelníku (například podmínky v bloku „když ... tak“)?; Je to blok pro zadání čísla; Je to logická podmínka (ano/ne); Je to startovní blok; B
+Který blok použijete, aby postava na scéně řekla nějaký text v bublině?; bublina; řekni Ahoj! na 2 sekundy; napiš text; B
+Jak vymažete blok z plochy scénářů?; Kliknete na něj pravým tlačítkem a dáte smazat (nebo ho přetáhnete zpět do nabídky); Stisknete klávesu Esc; Vypnete Scratch; A
+Jaká barva bloku reprezentuje kategorii „Události“ (Events)?; Žlutá; Zelená; Modrá; A
+Co udělá blok „otoč se o 15 stupňů“?; Posune postavu nahoru; Otočí postavu na místě; Zvětší postavu; B
+Může mít jedna postava více než jeden kostým?; Ne, pouze jeden; Ano, může jich mít kolik chce; Maximaálně dva; B
+K čemu slouží červené tlačítko vedle zelené vlaječky?; Ke spuštění hry; K uložení projektu; K zastavení celého projektu; C
+Jak se nazývá osa, která ve Scratchi určuje vodorovný pohyb (doleva a doprava)?; Osa X; Osa Y; Osa Z; A
+Jaká hodnota osy Y posune postavu na scéně směrem nahoru?; Kladné číslo (např. 50); Záporné číslo (např. -50); Nula; A
+Ve které kategorii najdete blok „když se dotýkáš [ukazatel myši]?“; Vnímání; Operátory; Moje bloky; A
+K čemu slouží blok „následující kostým“?; Změní pozadí scény; Přepne postavu na její další obrázek v pořadí; Vytvoří kopii postavy; B
+Co se stane, když použijete blok „změň efekt barva o 25“?; Postava změní svou velikost; Postava změní svou barvu; Postava se otočí vzhůru nohama; B
+Jak se jmenuje online komunita a editor, kde se programuje v blocích?; Python; Scratch; Minecraft; B
+Co dělá blok „nastav velikost na 100 %“?; Vrátí postavu do její původní velikosti; Zvětší postavu na celou obrazovku; Postava zmizí; A
+Který z těchto bloků spustí kód pouze tehdy, když je splněna určitá podmínka?; opakuj stále; když ... tak; čekej dokud; B
+Co dělá blok Když narazíš na okraj, odraž se?;Otočí scénu vzhůru nohama;Zabrání postavě odejít mimo obrazovku a otočí ji zpět;Ukončí celý program;B
+Jak smažete nechtěný blok ze scénáře?;Přetáhnete ho zpět do levého menu bloků;Kliknete na zelenou vlaječku;Schováte ho do batohu;A
+Může mít jedna postava více než jeden kostým?;Ne, pouze jeden;Ano, může jich mít libovolně mnoho;Maximálně dva;B
+Co dělá blok Čekej 1 sekundu?;Zrychlí program na maximum;Zastaví provádění dalších bloků pod ním na jednu sekundu;Ukončí hru;B
+Jak zařídíte, aby postava mluvila a zároveň hrál zvuk?;Vložím bloky pod sebe nebo použiji paralelní scénáře;Scratch to neumí;Musím vytvořit dvě stejné postavy;A
+Který blok nastaví směr postavy přesně doprava?;Nastav směr na 90;Nastav směr na 0;Nastav směr na -90;A
+Který blok nastaví směr postavy přesně nahoru?;Nastav směr na 90;Nastav směr na 0;Nastav směr na 180;B
+Co se stane, když použijete blok Přejdi na náhodná pozice?;Postava zmizí;Vytvoří se nová náhodná postava;Postava skočí na náhodné místo na scéně;C
+Která část Scratch rozhraní slouží k sestavování bloků do kódu?;Okno scénářů (prostřední panel);Scéna;Knihovna kostýmů;A
+Jak vytvoříte novou proměnnou?;V záložce Proměnné kliknu na Vytvoř proměnnou;V záložce Pohyb kliknu na Nový krok;Proměnné se tvoří samy;A
+Co se stane s proměnnou Skóre, pokud použijete blok Změň Skóre o 1?;Skóre se sníží o 1 bod;Skóre se nastaví na nulu;Skóre se zvýší o 1 bod;C
+Co se stane s proměnnou Skóre, pokud použijete blok Nastav Skóre na 0?;Skóre se zvýší o nulu;Skóre se vynuluje (bude přesně 0);Skóre se smaže;B
+Můžeme ve Scratchi měnit pozadí Scény?;Ne, pozadí je vždy bílé;Ano, můžeme kreslit nebo vybírat z knihovny pozadí;Pouze v placené verzi;B
+Která kategorie bloků (tmavě modrá) slouží k kreslení čar na scénu pomocí postavy?;Pero (rozšíření);Pohyb;Vzhled;A
+Co dělá blok Smaž v kategorii Pero?;Smaže celou postavu;Smaže všechny nakreslené čáry ze scény;Vynuluje skóre;B
+Co dělá blok Spiš v kategorii Pero?;Postava začne za sebou při pohybu kreslit čáru;Postava přestane kreslit;Postava napíše text;A
+Co dělá blok Zvedni pero?;Postava začne kreslit silnější čáru;Postava přestane při pohybu kreslit čáru;Postava vyskočí nahoru;B
+Jak spustíte kód, který je připojen k bloku Po kliknutí na tuto postavu?;Stisknutím mezerníku;Kliknutím na pozadí;Kliknutím myší přímo na postavu na scéně;C
+Co se stane, když spojíte dva bloky k sobě?;Vytvoří sekvenci příkazů, které se provedou hned po sobě;Program nahlásí chybu;Bloky se navzájem vymažou;A
+Co dělá blok Změň velikost o 10?;Postava se zvětší;Postava se zmenší;Postava se posune o 10 kroků nahoru;A
+Co dělá blok Změň velikost o -10?;Postava se zvětší;Postava se zmenší;Postava se otočí;B
+Může na scéně běžet více programů (scénářů) najednou?;Ne, vždy běží jen jeden kód;Ano, Scratch podporuje současný běh více kódů;Ano, ale pouze u pozadí;B
+K čemu slouží červené osmiúhelníkové tlačítko vedle zelené vlaječky?;K uložení projektu;Ke spuštění zvuku;K okamžitému zastavení celého programu;C
+Jakým blokem otestujete, zda se postava dotýká okraje scény?;Dotýká se okraj?;Když narazíš na okraj odraž se;Pozice X = okraj;A
+Který blok vybere náhodné číslo například pro házení kostkou?;skoč na náhodná pozice;náhodné číslo od 1 do 6;opakuj náhodně;B
+
